@@ -4,6 +4,7 @@ import { DetailLayout, osmLinkFor } from "@/components/DetailLayout";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { getAllCards, restaurantToCard } from "@/lib/cards";
+import { formatPrice } from "@/lib/price";
 import { getLocale } from "@/lib/locale";
 import { getContent } from "@/lib/repositories";
 import { buildMetadata } from "@/lib/site";
@@ -41,7 +42,7 @@ export default async function RestaurantPage({ params }: P) {
       description={r.description[locale]}
       rows={[
         { label: L.location, value: [r.location.area[locale], r.location.address].filter(Boolean).join(" · ") },
-        { label: L.price, value: r.priceNote?.[locale] ?? (r.priceBand === "unknown" ? L.noPrice : d.filters[r.priceBand]) },
+        { label: L.price, value: [r.priceMxn !== null ? formatPrice(r.priceMxn, { free: L.free, from: L.from }) : r.priceBand === "unknown" ? L.noPrice : d.filters[r.priceBand], r.priceNote?.[locale]].filter(Boolean).join(" — ") },
         ...(meals ? [{ label: d.filters.meal, value: meals }] : []),
         ...(r.hours ? [{ label: L.hours, value: r.hours[locale] }] : []),
       ]}

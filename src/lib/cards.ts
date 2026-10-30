@@ -3,6 +3,7 @@ import { fmt, getDictionary, type Dict } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { getContent } from "@/lib/repositories";
 import { getOfferStatus, type OfferStatus } from "@/lib/offers";
+import { filterBands, formatPrice } from "@/lib/price";
 
 export type CardType = "place" | "restaurant" | "offer" | "article";
 export type CardColor = Category["color"];
@@ -62,10 +63,10 @@ export function restaurantToCard(r: Restaurant, cat: Category, l: Locale, d: Dic
   return {
     key: `restaurant:${r.id}`, type: "restaurant", id: r.id, href: href(l, "restaurantes", r.slug),
     title: r.title[l], summary: r.summary[l], categoryId: cat.id, categoryName: cat.name[l], color: cat.color, icon: cat.icon,
-    badge: r.priceBand !== "unknown" ? { label: d.filters[r.priceBand], color: "yellow" } : null,
+    badge: r.priceMxn !== null ? { label: formatPrice(r.priceMxn, { free: d.labels.free, from: d.labels.from }), color: "yellow" } : r.priceBand !== "unknown" ? { label: d.filters[r.priceBand], color: "yellow" } : null,
     area: r.location.area[l], photo: firstPhoto(r.photos, l),
     pending: r.verification.status === "pending", offerStatus: null, endsAt: null, date: null, coords: coordsOf(r.location),
-    filters: { category: [cat.id], price: [r.priceBand], meal: r.mealTypes, area: [r.location.area[l]] },
+    filters: { category: [cat.id], price: filterBands(r.priceBand), meal: r.mealTypes, area: [r.location.area[l]] },
   };
 }
 

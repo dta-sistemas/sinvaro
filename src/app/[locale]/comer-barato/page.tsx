@@ -19,7 +19,7 @@ export default async function EatsPage({ params }: P) {
   const { restaurants, categories } = await getAllCards(locale);
   const groups = [
     categoryGroup(categories.filter((c) => c.kind === "restaurant"), d.filters.category, locale),
-    valueGroup("price", d.filters.price, [["under50", d.filters.under50], ["under100", d.filters.under100], ["under150", d.filters.under150]]),
+    valueGroup("price", d.filters.price, [["free", d.filters.free], ["under50", d.filters.under50], ["under100", d.filters.under100], ["under150", d.filters.under150], ["over150", d.filters.over150]]),
     valueGroup("meal", d.filters.meal, [["breakfast", d.filters.breakfast], ["lunch", d.filters.lunch], ["dinner", d.filters.dinner]]),
     areaGroup(restaurants, d.filters.area),
   ];

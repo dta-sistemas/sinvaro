@@ -34,7 +34,7 @@ function template(type: Type, slug: string, categoryId: string) {
     case "place":
       return { ...base, title: t(), summary: t(), description: t(), location, access: "unknown", isSecret: false, tips: { es: [], en: [] } };
     case "restaurant":
-      return { ...base, title: t(), summary: t(), description: t(), location, mealTypes: [], priceBand: "unknown", tips: { es: [], en: [] } };
+      return { ...base, title: t(), summary: t(), description: t(), location, mealTypes: [], priceBand: "unknown", priceMxn: null, tips: { es: [], en: [] } };
     case "offer":
       return { ...base, title: t(), business: TODO, benefit: t(), summary: t(), conditions: { es: [TODO], en: [TODO] }, startsAt: null, endsAt: null, location, couponCode: null, redeemUrl: null, featured: false, isSample: false };
     case "article":

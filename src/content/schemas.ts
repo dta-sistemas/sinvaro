@@ -77,7 +77,7 @@ export const placeSchema = z.object({
 });
 export type Place = z.infer<typeof placeSchema>;
 
-export const priceBand = z.enum(["under50", "under100", "under150", "unknown"]);
+export const priceBand = z.enum(["free", "under50", "under100", "under150", "over150", "unknown"]);
 export const mealType = z.enum(["breakfast", "lunch", "dinner"]);
 
 export const restaurantSchema = z.object({
@@ -87,8 +87,10 @@ export const restaurantSchema = z.object({
   description: localizedText,
   location,
   mealTypes: z.array(mealType),
-  /** Rango orientativo para filtrar; "unknown" hasta verificar */
+  /** Rango orientativo para filtrar; "unknown" hasta verificar. Si hay `priceMxn` debe coincidir con su rango. */
   priceBand,
+  /** Precio de referencia ("desde") en MXN: un número, o 0 si es gratis. Solo si está verificado. */
+  priceMxn: z.number().min(0).nullable().default(null),
   priceNote: localizedText.optional(),
   hours: localizedText.optional(),
   externalUrl: z.string().url().optional(),

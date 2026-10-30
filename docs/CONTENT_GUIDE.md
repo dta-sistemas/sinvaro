@@ -37,7 +37,8 @@ Tipos: `place` (lugares), `restaurant` (comer barato), `offer` (ofertas), `artic
 
 ### Restaurantes (`restaurants.json`)
 - `categoryId` con `kind: "restaurant"`; `mealTypes`: `breakfast`, `lunch`, `dinner`.
-- `priceBand`: `under50`, `under100`, `under150` o `unknown`. Es un filtro orientativo; usa `unknown` mientras no hayas comprobado precios. Los filtros de precio y de comida del día solo aparecen cuando al menos un restaurante los tiene.
+- **Precio** (número o gratis): mientras no lo hayas comprobado deja `"priceBand": "unknown"` y `"priceMxn": null`. Cuando lo verifiques (`verification.status: "verified"` con fecha) pon el precio de referencia en `priceMxn` (un número en MXN, o `0` si es gratis) y el `priceBand` que le corresponde: `free` (0), `under50` (<50), `under100` (<100), `under150` (<150) u `over150` (150 o más). La validación te dice qué rango corresponde si no coincide. En la tarjeta y la ficha se muestra "Desde $70 MXN" o "Gratis".
+- Los filtros de **Rango de precio** y **Comida del día** están ocultos mientras ningún restaurante tenga ese dato, y cada opción aparece solo si tiene resultados. El filtro de precio es acumulativo: algo de $30 aparece en "Menos de $50", "$100" y "$150"; algo gratis aparece en "Gratis" y en todos los "Menos de".
 
 ### Ofertas (`offers.json`)
 Una oferta **publicada** debe tener: `endsAt` (fecha de vencimiento, `AAAA-MM-DD`), `conditions` (al menos una, en es y en, mismo número), `business`, `benefit`. Opcionales: `startsAt`, `couponCode`, `redeemUrl` (sin URL no se muestra botón), `featured: true` (la destaca en el inicio).

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { bandForPrice } from "@/lib/price";
 import {
   articleSchema, categorySchema, couponSchema, legalSchema, offerSchema, placeSchema,
   restaurantSchema, tagSchema, tipSchema,
@@ -109,6 +110,15 @@ export function loadAllContent(): AllContent {
       if (it.verification.status === "verified" && !it.verification.lastVerified) {
         throw new Error(`${name} "${it.id}": verification "verified" requiere lastVerified`);
       }
+    }
+  }
+  for (const r of restaurants) {
+    if (r.priceMxn !== null) {
+      if (r.verification.status === "pending") throw new Error(`restaurants "${r.id}": no publiques priceMxn sin verificar (usa priceBand "unknown" hasta comprobarlo)`);
+      const expected = bandForPrice(r.priceMxn);
+      if (r.priceBand !== expected) throw new Error(`restaurants "${r.id}": priceMxn ${r.priceMxn} corresponde a priceBand "${expected}", no "${r.priceBand}"`);
+    } else if (r.priceBand !== "unknown" && r.verification.status === "pending") {
+      throw new Error(`restaurants "${r.id}": priceBand "${r.priceBand}" requiere verificación (o déjalo en "unknown")`);
     }
   }
   for (const a of articles) {

@@ -5,7 +5,7 @@ Definido con Zod en `src/content/schemas.ts` (fuente de verdad). Resumen:
 **Comunes:** `id` (estable), `slug` (único, `[a-z0-9-]`), `status` (`published|draft|archived`), `createdAt`, `updatedAt`, `verification {status: verified|pending, lastVerified}`, `seo?`, `photos[]`, `categoryId`, `tagIds[]`.
 
 - **Place:** `title`, `summary`, `description`, `location {area, address?, coordinates|null}`, `access (free|paid|reservation|unknown)`, `isSecret`, `priceNote?`, `hours?`, `howToGet?`, `tips`.
-- **Restaurant:** igual que Place más `mealTypes[]`, `priceBand (under50|under100|under150|unknown)` (filtro orientativo), `externalUrl?`.
+- **Restaurant:** igual que Place más `mealTypes[]`, `priceBand (free|under50|under100|under150|over150|unknown)` y `priceMxn` (número ≥ 0 o `null`; 0 = gratis; solo si está verificado y coherente con `priceBand`), `externalUrl?`.
 - **Offer:** `business`, `benefit`, `conditions[]`, `startsAt|null`, `endsAt|null`, `couponCode|null`, `redeemUrl|null`, `featured`, `isSample`.
 - **Coupon:** `offerId`, `code`, `status`.
 - **Article:** `excerpt`, `body` (párrafos; `## ` = subtítulo), `author`, `publishedAt`, `featuredImage?`.
