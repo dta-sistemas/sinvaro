@@ -1,0 +1,8 @@
+[
+  {"id":"playa-publica","name":{"es":"Playa pública","en":"Public beach"}},
+  {"id":"gratis","name":{"es":"Gratis","en":"Free"}},
+  {"id":"centro","name":{"es":"Centro","en":"Downtown"}},
+  {"id":"zona-hotelera","name":{"es":"Zona Hotelera","en":"Hotel Zone"}},
+  {"id":"mercado","name":{"es":"Mercado","en":"Market"}},
+  {"id":"ahorro","name":{"es":"Ahorro","en":"Saving"}}
+]

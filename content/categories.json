@@ -1,0 +1,26 @@
+[
+  {"id":"playas","kind":"place","slug":"playas","name":{"es":"Playas","en":"Beaches"},"description":{"es":"Playas públicas para disfrutar el Caribe.","en":"Public beaches to enjoy the Caribbean."},"color":"teal","icon":"Waves","active":true},
+  {"id":"parques","kind":"place","slug":"parques","name":{"es":"Parques","en":"Parks"},"description":{"es":"Parques y espacios abiertos.","en":"Parks and open spaces."},"color":"yellow","icon":"Trees","active":true},
+  {"id":"cultura","kind":"place","slug":"cultura","name":{"es":"Cultura","en":"Culture"},"description":{"es":"Cultura, eventos y ambiente local.","en":"Culture, events and local atmosphere."},"color":"purple","icon":"Landmark","active":true},
+  {"id":"naturaleza","kind":"place","slug":"naturaleza","name":{"es":"Naturaleza","en":"Nature"},"description":{"es":"Manglares, cenotes y espacios naturales.","en":"Mangroves, cenotes and natural areas."},"color":"teal","icon":"Leaf","active":true},
+  {"id":"actividades","kind":"place","slug":"actividades","name":{"es":"Actividades","en":"Activities"},"description":{"es":"Cosas por hacer sin gastar de más.","en":"Things to do without overspending."},"color":"pink","icon":"Sparkles","active":true},
+  {"id":"miradores","kind":"place","slug":"miradores","name":{"es":"Miradores","en":"Viewpoints"},"description":{"es":"Vistas y atardeceres.","en":"Views and sunsets."},"color":"pink","icon":"Eye","active":true},
+
+  {"id":"mercados","kind":"restaurant","slug":"mercados","name":{"es":"Mercados","en":"Markets"},"description":{"es":"Mercados tradicionales con comida local.","en":"Traditional markets with local food."},"color":"yellow","icon":"Store","active":true},
+  {"id":"comida-corrida","kind":"restaurant","slug":"comida-corrida","name":{"es":"Comida corrida","en":"Set lunch"},"description":{"es":"Menús del día.","en":"Daily set menus."},"color":"yellow","icon":"Utensils","active":true},
+  {"id":"tacos","kind":"restaurant","slug":"tacos","name":{"es":"Tacos","en":"Tacos"},"description":{"es":"Tacos y taquerías.","en":"Tacos and taquerías."},"color":"yellow","icon":"Sandwich","active":true},
+  {"id":"antojitos","kind":"restaurant","slug":"antojitos","name":{"es":"Antojitos","en":"Street snacks"},"description":{"es":"Antojitos mexicanos.","en":"Mexican street snacks."},"color":"yellow","icon":"Soup","active":true},
+  {"id":"desayunos","kind":"restaurant","slug":"desayunos","name":{"es":"Desayunos","en":"Breakfast"},"description":{"es":"Opciones para desayunar.","en":"Breakfast options."},"color":"yellow","icon":"Egg","active":true},
+  {"id":"cafes","kind":"restaurant","slug":"cafes","name":{"es":"Cafés","en":"Cafés"},"description":{"es":"Cafeterías.","en":"Coffee shops."},"color":"yellow","icon":"Coffee","active":true},
+
+  {"id":"2x1","kind":"offer","slug":"2x1","name":{"es":"2x1","en":"2-for-1"},"description":{"es":"Promociones 2x1.","en":"2-for-1 promotions."},"color":"purple","icon":"Ticket","active":true},
+  {"id":"descuentos","kind":"offer","slug":"descuentos","name":{"es":"Descuentos","en":"Discounts"},"description":{"es":"Descuentos y cupones.","en":"Discounts and coupons."},"color":"teal","icon":"Percent","active":true},
+  {"id":"happy-hour","kind":"offer","slug":"happy-hour","name":{"es":"Happy hour","en":"Happy hour"},"description":{"es":"Promociones en bebidas por horario.","en":"Drink promotions by time slot."},"color":"purple","icon":"Wine","active":true},
+  {"id":"tours","kind":"offer","slug":"tours","name":{"es":"Tours","en":"Tours"},"description":{"es":"Descuentos en tours y actividades.","en":"Discounts on tours and activities."},"color":"teal","icon":"Ship","active":true},
+  {"id":"comida","kind":"offer","slug":"comida","name":{"es":"Comida","en":"Food"},"description":{"es":"Promociones en restaurantes.","en":"Restaurant promotions."},"color":"yellow","icon":"Utensils","active":true},
+
+  {"id":"tips","kind":"article","slug":"tips","name":{"es":"Tips","en":"Tips"},"description":{"es":"Consejos prácticos.","en":"Practical advice."},"color":"pink","icon":"Lightbulb","active":true},
+  {"id":"guias","kind":"article","slug":"guias","name":{"es":"Guías","en":"Guides"},"description":{"es":"Guías para planear tu visita.","en":"Guides to plan your visit."},"color":"teal","icon":"Map","active":true},
+  {"id":"ahorro","kind":"article","slug":"ahorro","name":{"es":"Ahorro","en":"Saving"},"description":{"es":"Ideas para gastar menos.","en":"Ideas to spend less."},"color":"yellow","icon":"PiggyBank","active":true},
+  {"id":"transporte","kind":"article","slug":"transporte","name":{"es":"Transporte","en":"Transport"},"description":{"es":"Cómo moverte por la ciudad.","en":"How to get around."},"color":"purple","icon":"Bus","active":true}
+]

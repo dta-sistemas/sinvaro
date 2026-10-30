@@ -1,0 +1,166 @@
+import type { Locale } from "@/content/schemas";
+
+const es = {
+  site: {
+    name: "Sin Varo Cancún",
+    tagline: "Sin varo, pero con plan",
+    description: "Planes gratis, comida barata y ofertas para disfrutar Cancún gastando menos.",
+  },
+  nav: {
+    home: "Inicio", free: "Cosas gratis", cheapEats: "Comer barato", offers: "Ofertas",
+    secret: "Lugares secretos", blog: "Blog", map: "Mapa", search: "Buscar", saved: "Guardados",
+    menu: "Menú", closeMenu: "Cerrar menú", skip: "Saltar al contenido", language: "Idioma",
+    main: "Navegación principal", bottom: "Navegación móvil", bottomFree: "Gratis",
+  },
+  hero: {
+    line1: "¿SIN VARO EN", line2: "CANCÚN?", tag: "Aquí no te aburres.",
+    sr: "¿Sin varo en Cancún? Aquí no te aburres.",
+    subtitle: "Planes gratis, comida barata y ofertas para disfrutar más gastando menos.",
+    ctaExplore: "Explorar planes", ctaFree: "Ver cosas gratis", ctaOffers: "Descubrir ofertas",
+  },
+  quick: {
+    free: { a: "COSAS", b: "GRATIS", cta: "Ver planes", desc: "Playas, parques y más sin gastar." },
+    eats: { a: "COMER", b: "BARATO", cta: "Ver lugares", desc: "Comida local para tu bolsillo." },
+    offers: { a: "OFERTAS", b: "DE HOY", cta: "Ver ofertas", desc: "Promociones vigentes." },
+    secret: { a: "LUGARES", b: "SECRETOS", cta: "Descubrir", desc: "Rincones que pocos conocen." },
+  },
+  sections: {
+    recommended: "Planes recomendados", featuredOffers: "Ofertas destacadas", tips: "Tips Sin Varo",
+    latest: "Del blog", viewAll: "Ver todos", viewAllF: "Ver todas",
+  },
+  labels: {
+    free: "Gratis", paid: "De pago", reservation: "Con reservación", unknownAccess: "Acceso por confirmar",
+    pending: "Por verificar", lastVerified: "Última verificación", neverVerified: "Aún sin verificar",
+    pendingNotice: "Esta información está pendiente de verificación. Confirma precios, horarios y accesos antes de ir.",
+    location: "Ubicación", price: "Precio", hours: "Horarios", howToGet: "Cómo llegar", tips: "Consejos prácticos",
+    conditions: "Condiciones", benefit: "Beneficio", validity: "Vigencia", coupon: "Código de cupón", business: "Negocio",
+    consult: "Consultar promoción", related: "También te puede interesar", approx: "Ubicación aproximada",
+    seeOnMap: "Ver en el mapa", openOsm: "Abrir en OpenStreetMap", save: "Guardar en favoritos",
+    unsave: "Quitar de favoritos", photoPlaceholder: "Foto temporal", readMore: "Leer más",
+    publishedOn: "Publicado el", by: "Por", home: "Inicio", details: "Ver detalles",
+    statusActive: "Vigente", statusUpcoming: "Próxima", statusExpired: "Vencida",
+    validUntil: "Vigente hasta el {date}", validFrom: "Comienza el {date}", expiredOn: "Venció el {date}",
+    noExpiry: "Sin fecha de vencimiento declarada", expiredNotice: "Esta promoción ya venció y no está disponible.",
+    upcomingNotice: "Esta promoción aún no comienza.", sampleNotice: "Contenido de ejemplo para desarrollo. No es una oferta real.",
+    noPrice: "Precio por confirmar", verifyDirect: "Confirma condiciones directamente con el negocio.",
+  },
+  filters: {
+    all: "Todas", clear: "Limpiar filtros", showMore: "Ver más", results: "{n} resultados", result1: "1 resultado",
+    category: "Categoría", price: "Rango de precio", meal: "Comida del día", area: "Zona", status: "Vigencia",
+    access: "Acceso", noResultsTitle: "No encontramos resultados", noResultsText: "Prueba con otros filtros o limpia la selección.",
+    emptyCollectionTitle: "Aún no hay contenido aquí", emptyCollectionText: "Estamos preparando esta sección. Vuelve pronto.",
+    under50: "Menos de $50 MXN", under100: "Menos de $100 MXN", under150: "Menos de $150 MXN",
+    breakfast: "Desayuno", lunch: "Comida", dinner: "Cena",
+    active: "Vigentes", upcoming: "Próximas",
+    priceNote: "Los rangos son filtros orientativos, no precios confirmados.",
+  },
+  pages: {
+    free: { a: "COSAS", b: "GRATIS", intro: "Disfruta Cancún sin gastar ni un peso.", seoTitle: "Cosas gratis en Cancún", seoDesc: "Playas, parques y actividades gratis en Cancún. Planes para disfrutar sin gastar." },
+    eats: { a: "COMER", b: "BARATO", intro: "Delicioso, local y amigable con tu bolsillo.", seoTitle: "Dónde comer barato en Cancún", seoDesc: "Mercados y lugares para comer económico en Cancún." },
+    offers: { a: "OFERTAS", b: "DE HOY", intro: "Aprovecha las mejores promociones en Cancún.", seoTitle: "Ofertas en Cancún", seoDesc: "Promociones, cupones y descuentos en Cancún.", expiredTitle: "Ofertas vencidas", emptyTitle: "No hay ofertas vigentes por ahora", emptyText: "Cuando haya promociones verificadas, aparecerán aquí." },
+    secret: { a: "LUGARES", b: "SECRETOS", intro: "Rincones que pocos conocen y te encantarán.", seoTitle: "Lugares secretos en Cancún", seoDesc: "Rincones poco conocidos en Cancún y alrededores.", notice: "Respeta la propiedad privada y las zonas restringidas. Si un lugar requiere pago, reservación o permiso, lo indicamos en su ficha." },
+    map: { a: "MAPA", b: "INTERACTIVO", intro: "Encuentra lugares gratis, baratos y ofertas cerca de ti.", seoTitle: "Mapa de planes en Cancún", seoDesc: "Explora en el mapa lugares gratis y económicos en Cancún.", noCoords: "Algunos lugares aún no tienen ubicación en el mapa.", list: "Resultados", loading: "Cargando mapa…", error: "No se pudo cargar el mapa.", attribution: "Datos del mapa © colaboradores de OpenStreetMap", showing: "Mostrando {n} lugares con ubicación" },
+    blog: { a: "TIPS &", b: "BLOG", intro: "Consejos, guías y todo lo que necesitas saber para disfrutar Cancún sin varo.", seoTitle: "Blog: tips y guías para ahorrar en Cancún", seoDesc: "Consejos y guías para disfrutar Cancún gastando menos." },
+    search: { a: "BUSCAR", b: "EN SIN VARO", intro: "Busca lugares, ofertas y artículos.", placeholder: "Ej. playa, mercado, cenote…", button: "Buscar", hint: "Escribe al menos 2 letras.", seoTitle: "Buscar", types: { place: "Lugares", restaurant: "Comer barato", offer: "Ofertas", article: "Artículos" } },
+    favorites: { a: "MIS", b: "GUARDADOS", intro: "Tus favoritos se guardan en este navegador.", emptyTitle: "Aún no guardas nada", emptyText: "Toca el corazón en cualquier tarjeta para guardarla aquí.", seoTitle: "Guardados", localNote: "Se guardan solo en este dispositivo." },
+    contact: { a: "ESCRÍBENOS", b: "CONTACTO", intro: "Cuéntanos tu duda, sugerencia o idea de colaboración.", seoTitle: "Contacto", seoDesc: "Contacta a Sin Varo Cancún.", collab: "Colaboración comercial", collabText: "Si tienes un negocio y quieres aparecer en Sin Varo, escríbenos con el tema “Colaboración comercial”. Todo contenido patrocinado se identificará claramente." },
+    notFound: { title: "Esta página no existe", text: "Quizá el enlace cambió o el contenido ya no está disponible.", cta: "Volver al inicio" },
+  },
+  forms: {
+    newsletter: { a: "¡ENTÉRATE DE TODO", b: "SIN VARO!", text: "Recibe los mejores planes, ofertas y tips en tu correo.", placeholder: "Tu correo electrónico", button: "Suscribirme", sending: "Enviando…", success: "¡Listo! Ya estás suscrito.", invalid: "Escribe un correo válido.", error: "No pudimos suscribirte. Inténtalo de nuevo más tarde.", notConfigured: "El newsletter aún no está disponible. Estamos terminando de configurarlo.", rate: "Demasiados intentos. Espera un momento e inténtalo de nuevo.", label: "Correo electrónico", privacy: "Al suscribirte aceptas nuestro aviso de privacidad." },
+    contact: { name: "Nombre", email: "Correo electrónico", topic: "Tema", topicGeneral: "Consulta general", topicCollab: "Colaboración comercial", message: "Mensaje", send: "Enviar mensaje", sending: "Enviando…", success: "¡Gracias! Recibimos tu mensaje.", invalid: "Revisa los campos marcados.", error: "No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde.", notConfigured: "El formulario aún no está disponible. Estamos terminando de configurarlo.", rate: "Demasiados intentos. Espera un momento e inténtalo de nuevo.", nameReq: "Escribe tu nombre.", emailReq: "Escribe un correo válido.", messageReq: "Escribe un mensaje (mínimo 10 caracteres)." },
+  },
+  footer: {
+    text: "Cancún se disfruta más cuando gastas menos.", navTitle: "Navega", legalTitle: "Legal", privacy: "Política de privacidad",
+    terms: "Términos y condiciones", contact: "Contacto", collab: "Colaboración comercial", socials: "Redes sociales",
+    made: "Hecho con ❤ en Cancún",
+  },
+  legal: { draftBadge: "Borrador pendiente de revisión legal" },
+  tipsHeading: "Tips Sin Varo",
+};
+
+export type Dict = typeof es;
+
+const en: Dict = {
+  site: {
+    name: "Sin Varo Cancún",
+    tagline: "Broke, but with a plan",
+    description: "Free plans, cheap food and deals to enjoy Cancún while spending less.",
+  },
+  nav: {
+    home: "Home", free: "Free things", cheapEats: "Cheap eats", offers: "Deals",
+    secret: "Secret spots", blog: "Blog", map: "Map", search: "Search", saved: "Saved",
+    menu: "Menu", closeMenu: "Close menu", skip: "Skip to content", language: "Language",
+    main: "Main navigation", bottom: "Mobile navigation", bottomFree: "Free",
+  },
+  hero: {
+    line1: "BROKE IN", line2: "CANCÚN?", tag: "You won't get bored.",
+    sr: "Broke in Cancún? You won't get bored.",
+    subtitle: "Free plans, cheap food and deals to enjoy more while spending less.",
+    ctaExplore: "Explore plans", ctaFree: "See free things", ctaOffers: "Discover deals",
+  },
+  quick: {
+    free: { a: "FREE", b: "THINGS", cta: "See plans", desc: "Beaches, parks and more at no cost." },
+    eats: { a: "CHEAP", b: "EATS", cta: "See places", desc: "Local food that fits your wallet." },
+    offers: { a: "TODAY'S", b: "DEALS", cta: "See deals", desc: "Current promotions." },
+    secret: { a: "SECRET", b: "SPOTS", cta: "Discover", desc: "Corners few people know." },
+  },
+  sections: {
+    recommended: "Recommended plans", featuredOffers: "Featured deals", tips: "Sin Varo tips",
+    latest: "From the blog", viewAll: "View all", viewAllF: "View all",
+  },
+  labels: {
+    free: "Free", paid: "Paid", reservation: "Reservation required", unknownAccess: "Access to be confirmed",
+    pending: "To be verified", lastVerified: "Last verified", neverVerified: "Not verified yet",
+    pendingNotice: "This information is pending verification. Confirm prices, hours and access before you go.",
+    location: "Location", price: "Price", hours: "Hours", howToGet: "How to get there", tips: "Practical tips",
+    conditions: "Conditions", benefit: "Benefit", validity: "Validity", coupon: "Coupon code", business: "Business",
+    consult: "Check the promotion", related: "You may also like", approx: "Approximate location",
+    seeOnMap: "See on the map", openOsm: "Open in OpenStreetMap", save: "Save to favorites",
+    unsave: "Remove from favorites", photoPlaceholder: "Temporary photo", readMore: "Read more",
+    publishedOn: "Published on", by: "By", home: "Home", details: "See details",
+    statusActive: "Active", statusUpcoming: "Upcoming", statusExpired: "Expired",
+    validUntil: "Valid until {date}", validFrom: "Starts on {date}", expiredOn: "Expired on {date}",
+    noExpiry: "No expiration date declared", expiredNotice: "This promotion has expired and is no longer available.",
+    upcomingNotice: "This promotion has not started yet.", sampleNotice: "Sample content for development. This is not a real offer.",
+    noPrice: "Price to be confirmed", verifyDirect: "Confirm conditions directly with the business.",
+  },
+  filters: {
+    all: "All", clear: "Clear filters", showMore: "Show more", results: "{n} results", result1: "1 result",
+    category: "Category", price: "Price range", meal: "Meal", area: "Area", status: "Validity",
+    access: "Access", noResultsTitle: "No results found", noResultsText: "Try other filters or clear your selection.",
+    emptyCollectionTitle: "Nothing here yet", emptyCollectionText: "We are preparing this section. Check back soon.",
+    under50: "Under $50 MXN", under100: "Under $100 MXN", under150: "Under $150 MXN",
+    breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner",
+    active: "Active", upcoming: "Upcoming",
+    priceNote: "Ranges are guidance filters, not confirmed prices.",
+  },
+  pages: {
+    free: { a: "FREE", b: "THINGS", intro: "Enjoy Cancún without spending a peso.", seoTitle: "Free things to do in Cancún", seoDesc: "Free beaches, parks and activities in Cancún. Plans to enjoy without spending." },
+    eats: { a: "CHEAP", b: "EATS", intro: "Delicious, local and friendly to your wallet.", seoTitle: "Where to eat cheap in Cancún", seoDesc: "Markets and budget-friendly places to eat in Cancún." },
+    offers: { a: "TODAY'S", b: "DEALS", intro: "Take advantage of the best promotions in Cancún.", seoTitle: "Deals in Cancún", seoDesc: "Promotions, coupons and discounts in Cancún.", expiredTitle: "Expired deals", emptyTitle: "No active deals right now", emptyText: "When verified promotions are available, they will appear here." },
+    secret: { a: "SECRET", b: "SPOTS", intro: "Corners few people know that you will love.", seoTitle: "Secret spots in Cancún", seoDesc: "Lesser-known places in and around Cancún.", notice: "Respect private property and restricted areas. If a place requires payment, a reservation or a permit, we say so on its page." },
+    map: { a: "INTERACTIVE", b: "MAP", intro: "Find free and cheap places and deals near you.", seoTitle: "Map of plans in Cancún", seoDesc: "Explore free and budget-friendly places in Cancún on the map.", noCoords: "Some places do not have a map location yet.", list: "Results", loading: "Loading map…", error: "The map could not be loaded.", attribution: "Map data © OpenStreetMap contributors", showing: "Showing {n} places with a location" },
+    blog: { a: "TIPS &", b: "BLOG", intro: "Advice, guides and everything you need to enjoy Cancún on a budget.", seoTitle: "Blog: tips and guides to save in Cancún", seoDesc: "Advice and guides to enjoy Cancún while spending less." },
+    search: { a: "SEARCH", b: "SIN VARO", intro: "Search places, deals and articles.", placeholder: "E.g. beach, market, cenote…", button: "Search", hint: "Type at least 2 letters.", seoTitle: "Search", types: { place: "Places", restaurant: "Cheap eats", offer: "Deals", article: "Articles" } },
+    favorites: { a: "MY", b: "SAVED", intro: "Your favorites are stored in this browser.", emptyTitle: "You haven't saved anything yet", emptyText: "Tap the heart on any card to save it here.", seoTitle: "Saved", localNote: "Saved on this device only." },
+    contact: { a: "WRITE TO US", b: "CONTACT", intro: "Tell us your question, suggestion or collaboration idea.", seoTitle: "Contact", seoDesc: "Contact Sin Varo Cancún.", collab: "Business collaboration", collabText: "If you run a business and want to appear on Sin Varo, write to us with the topic “Business collaboration”. Any sponsored content will be clearly identified." },
+    notFound: { title: "This page does not exist", text: "The link may have changed or the content is no longer available.", cta: "Back to home" },
+  },
+  forms: {
+    newsletter: { a: "GET ALL THE", b: "SIN VARO NEWS!", text: "Get the best plans, deals and tips in your inbox.", placeholder: "Your email", button: "Subscribe", sending: "Sending…", success: "Done! You are subscribed.", invalid: "Enter a valid email.", error: "We could not subscribe you. Please try again later.", notConfigured: "The newsletter is not available yet. We are finishing the setup.", rate: "Too many attempts. Wait a moment and try again.", label: "Email", privacy: "By subscribing you accept our privacy notice." },
+    contact: { name: "Name", email: "Email", topic: "Topic", topicGeneral: "General inquiry", topicCollab: "Business collaboration", message: "Message", send: "Send message", sending: "Sending…", success: "Thank you! We received your message.", invalid: "Check the highlighted fields.", error: "We could not send your message. Please try again later.", notConfigured: "The form is not available yet. We are finishing the setup.", rate: "Too many attempts. Wait a moment and try again.", nameReq: "Enter your name.", emailReq: "Enter a valid email.", messageReq: "Enter a message (at least 10 characters)." },
+  },
+  footer: {
+    text: "Cancún is better enjoyed when you spend less.", navTitle: "Navigate", legalTitle: "Legal", privacy: "Privacy policy",
+    terms: "Terms and conditions", contact: "Contact", collab: "Business collaboration", socials: "Social media",
+    made: "Made with ❤ in Cancún",
+  },
+  legal: { draftBadge: "Draft pending legal review" },
+  tipsHeading: "Sin Varo tips",
+};
+
+const dictionaries: Record<Locale, Dict> = { es, en };
+export const getDictionary = (locale: Locale): Dict => dictionaries[locale];
+export const fmt = (s: string, vars: Record<string, string | number>) =>
+  s.replace(/\{(\w+)\}/g, (_, k: string) => String(vars[k] ?? ""));

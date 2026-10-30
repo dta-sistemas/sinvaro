@@ -1,0 +1,19 @@
+{
+  "privacy": {
+    "title": { "es": "Aviso de privacidad", "en": "Privacy notice" },
+    "sections": [
+      { "heading": { "es": "Borrador pendiente de revisión legal", "en": "Draft pending legal review" }, "body": { "es": "Este texto es un borrador y debe ser revisado por un profesional legal antes del lanzamiento. No constituye el aviso de privacidad definitivo.", "en": "This text is a draft and must be reviewed by a legal professional before launch. It is not the final privacy notice." } },
+      { "heading": { "es": "Datos que podemos recibir", "en": "Data we may receive" }, "body": { "es": "Si te suscribes al newsletter o nos escribes desde el formulario de contacto, recibimos tu correo electrónico y el mensaje que decidas enviarnos.", "en": "If you subscribe to the newsletter or write to us through the contact form, we receive your email address and the message you choose to send." } },
+      { "heading": { "es": "Favoritos", "en": "Favorites" }, "body": { "es": "Tus favoritos se guardan únicamente en tu navegador (almacenamiento local) y no se envían a nuestros servidores.", "en": "Your favorites are saved only in your browser (local storage) and are not sent to our servers." } },
+      { "heading": { "es": "Proveedores", "en": "Providers" }, "body": { "es": "Usamos Resend para enviar correos y administrar suscripciones, y OpenStreetMap para mostrar el mapa. Estos servicios pueden procesar datos técnicos como tu dirección IP.", "en": "We use Resend to send emails and manage subscriptions, and OpenStreetMap to display the map. These services may process technical data such as your IP address." } }
+    ]
+  },
+  "terms": {
+    "title": { "es": "Términos y condiciones", "en": "Terms and conditions" },
+    "sections": [
+      { "heading": { "es": "Borrador pendiente de revisión legal", "en": "Draft pending legal review" }, "body": { "es": "Este texto es un borrador y debe ser revisado por un profesional legal antes del lanzamiento.", "en": "This text is a draft and must be reviewed by a legal professional before launch." } },
+      { "heading": { "es": "Información orientativa", "en": "Guidance only" }, "body": { "es": "La información del sitio es orientativa. Precios, horarios, accesos y promociones pueden cambiar; confirma siempre directamente con cada lugar o negocio.", "en": "The information on this site is for guidance only. Prices, hours, access and promotions may change; always confirm directly with each place or business." } },
+      { "heading": { "es": "Contenido patrocinado", "en": "Sponsored content" }, "body": { "es": "Cuando exista contenido patrocinado o enlaces de afiliados, se identificará claramente como tal.", "en": "When sponsored content or affiliate links exist, they will be clearly identified as such." } }
+    ]
+  }
+}

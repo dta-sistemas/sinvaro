@@ -1,0 +1,111 @@
+[
+  {
+    "id": "art-moverte-con-poco-dinero",
+    "slug": "como-moverte-en-cancun-con-poco-dinero",
+    "status": "published",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "verification": { "status": "pending", "lastVerified": null },
+    "photos": [],
+    "categoryId": "transporte",
+    "tagIds": ["ahorro"],
+    "title": { "es": "Cómo moverte en Cancún con poco dinero", "en": "How to get around Cancún on a small budget" },
+    "excerpt": { "es": "Ideas prácticas para desplazarte por la ciudad y la Zona Hotelera sin gastar de más.", "en": "Practical ideas to get around the city and the Hotel Zone without overspending." },
+    "author": "Equipo Sin Varo",
+    "publishedAt": "2026-10-29",
+    "body": {
+      "es": [
+        "Moverte por Cancún puede ser una de las partes más costosas de tu plan si no lo organizas. Con un poco de planeación, puedes reducir el gasto sin perder tiempo.",
+        "## Compara antes de decidir",
+        "Hay transporte público que conecta el centro con la Zona Hotelera. Antes de subir, confirma la ruta y la tarifa vigente, porque pueden cambiar. Si usas otro tipo de transporte, pregunta o acuerda el precio antes de iniciar el viaje.",
+        "## Agrupa tus destinos",
+        "Si tu plan incluye varios lugares, ordénalos por zona para evitar recorridos innecesarios. Por ejemplo, junta lo que está en el centro en un mismo día y deja la Zona Hotelera para otro.",
+        "## Camina cuando tenga sentido",
+        "En el centro hay distancias cortas entre varios puntos de interés. Caminar temprano o al atardecer es una forma gratuita de conocer la ciudad."
+      ],
+      "en": [
+        "Getting around Cancún can be one of the most expensive parts of your plan if you do not organize it. With a little planning you can cut costs without losing time.",
+        "## Compare before you decide",
+        "Public transport connects downtown with the Hotel Zone. Before boarding, confirm the current route and fare, as they can change. If you use another type of transport, ask or agree on the price before the trip starts.",
+        "## Group your destinations",
+        "If your plan includes several places, order them by area to avoid unnecessary trips. For example, cover downtown spots in one day and leave the Hotel Zone for another.",
+        "## Walk when it makes sense",
+        "Downtown has short distances between several points of interest. Walking early or at sunset is a free way to get to know the city."
+      ]
+    }
+  },
+  {
+    "id": "art-playas-publicas",
+    "slug": "guia-para-encontrar-playas-publicas-en-cancun",
+    "status": "published",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "verification": { "status": "pending", "lastVerified": null },
+    "photos": [],
+    "categoryId": "guias",
+    "tagIds": ["playa-publica", "gratis"],
+    "title": { "es": "Guía para encontrar playas públicas en Cancún", "en": "A guide to finding public beaches in Cancún" },
+    "excerpt": { "es": "Qué tener en cuenta para disfrutar el mar sin pagar entrada y sin invadir propiedad privada.", "en": "What to keep in mind to enjoy the sea without paying entry and without trespassing on private property." },
+    "author": "Equipo Sin Varo",
+    "publishedAt": "2026-10-29",
+    "body": {
+      "es": [
+        "En México, las playas son bienes de uso público. Eso significa que normalmente puedes acceder a la playa, aunque llegar a ella dependa de los accesos disponibles.",
+        "## Busca accesos públicos",
+        "En la Zona Hotelera hay accesos públicos señalizados. Ubícalos en el mapa antes de salir y confirma cómo llegar, porque algunos accesos son pequeños y fáciles de pasar por alto.",
+        "## Respeta el entorno",
+        "No ingreses a propiedades privadas para llegar al mar, no dejes basura y cuida la vegetación y la fauna. Si una zona está restringida, respétala.",
+        "## Confirma servicios",
+        "Que la playa sea pública no significa que tenga baños, regaderas o sombra. Lleva agua, protección solar y un plan para resguardar tus cosas."
+      ],
+      "en": [
+        "In Mexico, beaches are public-use assets. This means you can normally access the beach, although getting there depends on the available access points.",
+        "## Look for public access points",
+        "The Hotel Zone has signposted public accesses. Find them on the map before heading out and confirm how to get there, because some are small and easy to miss.",
+        "## Respect the environment",
+        "Do not cross private property to reach the sea, do not leave trash and take care of vegetation and wildlife. If an area is restricted, respect it.",
+        "## Confirm services",
+        "A public beach does not necessarily have restrooms, showers or shade. Bring water, sun protection and a plan to keep your belongings safe."
+      ]
+    }
+  },
+  {
+    "id": "art-ahorrar-en-tu-viaje",
+    "slug": "ideas-para-ahorrar-en-tu-viaje-a-cancun",
+    "status": "published",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "verification": { "status": "pending", "lastVerified": null },
+    "photos": [],
+    "categoryId": "ahorro",
+    "tagIds": ["ahorro"],
+    "title": { "es": "Ideas para ahorrar en tu viaje a Cancún", "en": "Ideas to save money on your Cancún trip" },
+    "excerpt": { "es": "Un plan sencillo para disfrutar más gastando menos, sin renunciar a lo importante.", "en": "A simple plan to enjoy more while spending less, without giving up what matters." },
+    "author": "Equipo Sin Varo",
+    "publishedAt": "2026-10-29",
+    "body": {
+      "es": [
+        "Ahorrar no significa renunciar a pasarla bien. Significa decidir en qué vale la pena gastar.",
+        "## Define un presupuesto por día",
+        "Antes de salir, decide cuánto quieres gastar al día en comida, transporte y actividades. Tener un número claro te ayuda a decir que no a gastos impulsivos.",
+        "## Alterna planes gratis y de pago",
+        "Combina un día de playa o paseo gratuito con una actividad de pago que sí quieras hacer. Así el gasto se reparte.",
+        "## Revisa condiciones de las promociones",
+        "Una promoción solo ayuda si cumple lo que prometes. Confirma vigencia, horarios y restricciones directamente con el negocio antes de ir.",
+        "## Prueba comida local",
+        "Los mercados y los lugares locales suelen ofrecer opciones variadas. Compara precios entre varios puestos antes de decidir."
+      ],
+      "en": [
+        "Saving does not mean giving up on having a good time. It means deciding what is worth spending on.",
+        "## Set a daily budget",
+        "Before you go out, decide how much you want to spend per day on food, transport and activities. A clear number helps you say no to impulse spending.",
+        "## Alternate free and paid plans",
+        "Combine a free beach or walking day with a paid activity you really want to do. That way the cost is spread out.",
+        "## Check promotion conditions",
+        "A promotion only helps if it delivers what it promises. Confirm validity, hours and restrictions directly with the business before you go.",
+        "## Try local food",
+        "Markets and local spots often offer a variety of options. Compare prices across several stalls before deciding."
+      ]
+    }
+  }
+]

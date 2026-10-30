@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sv-black: #111111;
+  --color-sv-white: #ffffff;
+  --color-sv-yellow: #ffd600;
+  --color-sv-pink: #ff2d78;
+  --color-sv-teal: #16b8b3;
+  --color-sv-purple: #8547e8;
+  --color-sv-gray: #f5f5f5;
+  --font-display: "Luckiest Guy", "Bangers", Impact, system-ui, sans-serif;
+  --font-accent: "Bangers", "Luckiest Guy", Impact, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: #fff; color: var(--color-sv-black); font-family: var(--font-sans); }
+:focus-visible { outline: 3px solid var(--color-sv-purple); outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+.sv-marker span { display: block; width: 28px; height: 28px; border-radius: 9999px; border: 3px solid #111; box-shadow: 0 2px 6px rgb(0 0 0 / .35); }
+.leaflet-container { font-family: var(--font-sans); }

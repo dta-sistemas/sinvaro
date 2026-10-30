@@ -1,0 +1,6 @@
+[
+  {"id":"transporte","icon":"Bus","title":{"es":"Muévete en transporte público","en":"Use public transport"},"text":{"es":"Compara opciones y confirma ruta y tarifa vigentes antes de subir.","en":"Compare options and confirm the current route and fare before boarding."}},
+  {"id":"temprano","icon":"Clock","title":{"es":"Ve temprano","en":"Go early"},"text":{"es":"Llegar temprano suele ayudarte a encontrar lugares más tranquilos.","en":"Arriving early usually helps you find quieter spots."}},
+  {"id":"promos","icon":"Wine","title":{"es":"Revisa las condiciones","en":"Check the conditions"},"text":{"es":"Antes de ir por una promoción, confirma horarios y vigencia con el negocio.","en":"Before going for a promotion, confirm hours and validity with the business."}},
+  {"id":"efectivo","icon":"Wallet","title":{"es":"Lleva algo de efectivo","en":"Carry some cash"},"text":{"es":"En algunos lugares locales solo aceptan efectivo.","en":"Some local spots only accept cash."}}
+]
