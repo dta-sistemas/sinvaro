@@ -9,7 +9,8 @@ Definido con Zod en `src/content/schemas.ts` (fuente de verdad). Resumen:
 - **Offer:** `business`, `benefit`, `conditions[]`, `startsAt|null`, `endsAt|null`, `couponCode|null`, `redeemUrl|null`, `featured`, `isSample`.
 - **Coupon:** `offerId`, `code`, `status`.
 - **Article:** `excerpt`, `body` (párrafos; `## ` = subtítulo), `author`, `publishedAt`, `featuredImage?`.
-- **Category:** `kind (place|restaurant|offer|article)`, `name`, `description`, `color`, `icon`, `active`.
+- **Route (autobús):** `code`, `name`, `summary`, `color` (#RRGGBB), `categoryId` (zona: categoría con `kind: "route"`), `operator?`, `fare {amountMxn|null, note?}` (solo verificado), `paths[]` (`id`, `name`, `coordinates [[lat,lng],…]`), `stops[]` (`name`, `lat`, `lng`, `approximate`, `pathId?`). Ver [ROUTES_GUIDE.md](ROUTES_GUIDE.md).
+- **Category:** `kind (place|restaurant|offer|article|route)`, `name`, `description`, `color`, `icon`, `active`.
 - **Tag:** `name`.
 
 Los textos son `{es, en}`; ambos idiomas son obligatorios. Reglas de integridad que valida `npm run validate:content`: ids y slugs únicos, categorías existentes del `kind` correcto, tags existentes, `endsAt ≥ startsAt`, cupones que apuntan a ofertas existentes.

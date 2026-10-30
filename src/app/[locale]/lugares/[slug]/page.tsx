@@ -7,6 +7,9 @@ import { getAllCards, placeToCard } from "@/lib/cards";
 import { getLocale } from "@/lib/locale";
 import { getContent } from "@/lib/repositories";
 import { buildMetadata } from "@/lib/site";
+import { RoutesNearby } from "@/components/RoutesNearby";
+import { NEARBY_RADIUS_M } from "@/lib/config";
+import { routesNearPoint } from "@/lib/geo";
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
@@ -38,6 +41,7 @@ export default async function PlacePage({ params }: P) {
   const tagNames = await repo.tags.list();
   const cat = (await repo.categories.getById(place.categoryId))!;
   const card = placeToCard(place, cat, locale, d);
+  const nearRoutes = card.coords ? routesNearPoint(await repo.routes.list(), [card.coords.lat, card.coords.lng], NEARBY_RADIUS_M) : [];
   const { places } = await getAllCards(locale);
   const related = places.filter((c) => c.id !== place.id).sort((a, b) => Number(b.categoryId === card.categoryId) - Number(a.categoryId === card.categoryId)).slice(0, 3);
   const L = d.labels;
@@ -58,6 +62,7 @@ export default async function PlacePage({ params }: P) {
         ...(place.tips[locale].length ? [{ title: L.tips, items: place.tips[locale] }] : []),
       ]}
       tags={tagNames.filter((t) => place.tagIds.includes(t.id)).map((t) => t.name[locale])}
+      extra={<RoutesNearby routes={nearRoutes} locale={locale} dict={d} radius={NEARBY_RADIUS_M} />}
       related={related} verification={place.verification} osmLink={osmLinkFor(card.coords)}
     />
   );

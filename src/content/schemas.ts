@@ -138,7 +138,7 @@ export const articleSchema = z.object({
 });
 export type Article = z.infer<typeof articleSchema>;
 
-export const categoryKind = z.enum(["place", "restaurant", "offer", "article"]);
+export const categoryKind = z.enum(["place", "restaurant", "offer", "article", "route"]);
 export const categorySchema = z.object({
   id: z.string().min(1),
   kind: categoryKind,
@@ -164,3 +164,50 @@ export const legalSchema = z.record(
     sections: z.array(z.object({ heading: localizedText, body: localizedText })),
   }),
 );
+
+/** Coordenada [lat, lng]. */
+export const latLng = z.tuple([z.number().min(-90).max(90), z.number().min(-180).max(180)]);
+export type LatLngTuple = z.infer<typeof latLng>;
+
+export const routePath = z.object({
+  id: slug,
+  /** Sentido o variante, p. ej. "Ida" / "Vuelta" */
+  name: localizedText,
+  coordinates: z.array(latLng).min(2),
+});
+
+export const routeStop = z.object({
+  name: z.string().min(1),
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+  /** Las paradas se publican como aproximadas hasta verificarlas en campo */
+  approximate: z.boolean().default(true),
+  /** Si se indica, la parada solo se muestra con ese sentido */
+  pathId: slug.optional(),
+});
+
+/** Ruta de autobús. La zona es una categoría con kind "route". */
+export const routeSchema = z.object({
+  id: z.string().min(1),
+  slug,
+  status: publishStatus,
+  createdAt: isoDate,
+  updatedAt: isoDate,
+  verification,
+  seo,
+  categoryId: z.string().min(1),
+  tagIds: z.array(z.string()).default([]),
+  /** Código visible, p. ej. "R-1" */
+  code: z.string().min(1).max(12),
+  name: localizedText,
+  summary: localizedText,
+  /** Color del trazado (#RRGGBB) */
+  color: z.string().regex(/^#[0-9a-fA-F]{6}$/, "Color #RRGGBB"),
+  operator: z.string().optional(),
+  /** Solo se permite un monto si la ruta está verificada */
+  fare: z.object({ amountMxn: z.number().min(0).nullable(), note: localizedText.optional() }).default({ amountMxn: null }),
+  paths: z.array(routePath).min(1),
+  stops: z.array(routeStop).default([]),
+  isSample: z.boolean().default(false),
+});
+export type Route = z.infer<typeof routeSchema>;

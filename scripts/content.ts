@@ -1,24 +1,26 @@
 /**
  * Utilidad editorial para los datos locales.
  *   npm run content -- list
- *   npm run content -- new <place|restaurant|offer|article> <slug>
+ *   npm run content -- new <place|restaurant|offer|article> <slug>   (rutas: npm run routes:import)
  *   npm run content -- publish <tipo> <slug>
  *   npm run content -- retire <tipo> <slug>
  */
 import fs from "node:fs";
 import path from "node:path";
+import { stringifyCompact } from "../src/lib/geojson";
 
 const FILES = {
   place: { file: "places.json", prefix: "place", kind: "place" },
   restaurant: { file: "restaurants.json", prefix: "rest", kind: "restaurant" },
   offer: { file: "offers.json", prefix: "offer", kind: "offer" },
   article: { file: "articles.json", prefix: "art", kind: "article" },
+  route: { file: "routes.json", prefix: "route", kind: "route" },
 } as const;
 type Type = keyof typeof FILES;
 
 const dir = path.join(process.cwd(), "content");
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as Record<string, any>[];
-const write = (f: string, data: unknown) => fs.writeFileSync(path.join(dir, f), JSON.stringify(data, null, 2) + "\n");
+const write = (f: string, data: unknown) => fs.writeFileSync(path.join(dir, f), stringifyCompact(data));
 const today = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/Cancun" });
 const TODO = "POR COMPLETAR";
 const t = (s = TODO) => ({ es: s, en: s });
@@ -37,6 +39,8 @@ function template(type: Type, slug: string, categoryId: string) {
       return { ...base, title: t(), summary: t(), description: t(), location, mealTypes: [], priceBand: "unknown", priceMxn: null, tips: { es: [], en: [] } };
     case "offer":
       return { ...base, title: t(), business: TODO, benefit: t(), summary: t(), conditions: { es: [TODO], en: [TODO] }, startsAt: null, endsAt: null, location, couponCode: null, redeemUrl: null, featured: false, isSample: false };
+    case "route":
+      return fail("Las rutas se crean con el importador: npm run routes:import -- <archivo.geojson> <slug> (ver docs/ROUTES_GUIDE.md)");
     case "article":
       return { ...base, title: t(), excerpt: t(), body: { es: [TODO], en: [TODO] }, author: "Equipo Sin Varo", publishedAt: today() };
   }
@@ -49,7 +53,7 @@ if (cmd === "list") {
   for (const type of Object.keys(FILES) as Type[]) {
     console.log(`\n${type.toUpperCase()}`);
     for (const it of read(FILES[type].file)) {
-      const extra = type === "offer" ? ` vence:${it.endsAt ?? "-"}` : "";
+      const extra = type === "offer" ? ` vence:${it.endsAt ?? "-"}` : type === "route" ? ` ${it.code} · ${it.paths.length} recorridos · ${it.stops.length} paradas` : "";
       console.log(`  ${it.status.padEnd(9)} ${it.verification.status.padEnd(8)} ${it.slug}${extra}`);
     }
   }

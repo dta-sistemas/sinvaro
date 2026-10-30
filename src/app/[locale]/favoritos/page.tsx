@@ -15,7 +15,7 @@ export default async function FavoritesPage({ params }: P) {
   const locale = await getLocale(params);
   const d = getDictionary(locale);
   const c = await getAllCards(locale);
-  const all = [...c.places, ...c.restaurants, ...c.offers];
+  const all = [...c.places, ...c.restaurants, ...c.offers, ...c.routes];
   return (
     <>
       <PageHero a={d.pages.favorites.a} b={d.pages.favorites.b} intro={d.pages.favorites.intro} color="pink" icon="Heart" />

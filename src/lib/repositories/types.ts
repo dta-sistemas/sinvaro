@@ -1,4 +1,4 @@
-import type { Article, Category, Coupon, Locale, Offer, Place, Restaurant, Tag } from "@/content/schemas";
+import type { Article, Category, Coupon, Locale, Offer, Place, Restaurant, Route, Tag } from "@/content/schemas";
 import type { OfferStatus } from "@/lib/offers";
 
 /**
@@ -37,6 +37,13 @@ export interface ArticlesRepository {
   related(article: Article, limit?: number): Promise<Article[]>;
 }
 
+export interface RoutesRepository {
+  list(filter?: { categoryId?: string }): Promise<Route[]>;
+  getBySlug(slug: string): Promise<Route | null>;
+  getById(id: string): Promise<Route | null>;
+  search(query: string, locale: Locale): Promise<Route[]>;
+}
+
 export interface CategoriesRepository {
   list(kind?: Category["kind"]): Promise<Category[]>;
   getById(id: string): Promise<Category | null>;
@@ -52,5 +59,6 @@ export interface ContentRepository {
   restaurants: RestaurantsRepository;
   offers: OffersRepository;
   articles: ArticlesRepository;
+  routes: RoutesRepository;
   categories: CategoriesRepository;
 }

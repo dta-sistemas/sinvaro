@@ -6,11 +6,12 @@ import site from "../../content/site.json";
 import { Logo } from "./Logo";
 import { NewsletterForm } from "./forms";
 
-export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
+export function Footer({ locale, dict, showRoutes }: { locale: Locale; dict: Dict; showRoutes: boolean }) {
   const socials = site.socials as { label: string; url: string }[];
   const links = [
     [dict.nav.free, href(locale, "gratis")], [dict.nav.cheapEats, href(locale, "comer-barato")], [dict.nav.offers, href(locale, "ofertas")],
-    [dict.nav.secret, href(locale, "lugares-secretos")], [dict.nav.blog, href(locale, "blog")], [dict.nav.map, href(locale, "mapa")],
+    [dict.nav.secret, href(locale, "lugares-secretos")],
+    ...(showRoutes ? [[dict.nav.getAround, href(locale, "como-llegar")]] : []), [dict.nav.blog, href(locale, "blog")], [dict.nav.map, href(locale, "mapa")],
   ];
   return (
     <footer className="mt-16 bg-sv-black pb-24 text-white lg:pb-0">

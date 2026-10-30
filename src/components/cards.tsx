@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Heart, MapPin } from "lucide-react";
 import type { CardItem } from "@/lib/cards";
 import type { Dict } from "@/i18n/dictionaries";
-import { COLOR } from "@/lib/colors";
+import { COLOR, readableOn } from "@/lib/colors";
 import { useFavorites } from "@/hooks/useFavorites";
 import { Badge, Icon } from "./ui";
 
@@ -53,7 +53,8 @@ export function OfferStatusChip({ item, labels }: { item: CardItem; labels: Dict
 }
 
 /** Tarjeta reutilizable para lugares, comida, ofertas y artículos. El enlace cubre toda la tarjeta. */
-export function ItemCard({ item, labels, variant = "grid" }: { item: CardItem; labels: Dict["labels"]; variant?: "grid" | "row" }) {
+export function ItemCard({ item, labels, variant = "grid", routeLabels }: { item: CardItem; labels: Dict["labels"]; variant?: "grid" | "row"; routeLabels?: Dict["pages"]["routes"] }) {
+  if (item.type === "route" && item.route) return <RouteCard item={item} labels={labels} t={routeLabels} />;
   const expired = item.offerStatus === "expired";
   const row = variant === "row";
   return (
@@ -81,6 +82,35 @@ export function ItemCard({ item, labels, variant = "grid" }: { item: CardItem; l
       {item.type !== "article" && (
         <div className="absolute right-3 top-3 z-10"><FavoriteButton item={item} labels={labels} /></div>
       )}
+    </article>
+  );
+}
+
+/** Tarjeta de ruta de autobús: bloque de color con el código + datos clave. */
+function RouteCard({ item, labels, t }: { item: CardItem; labels: Dict["labels"]; t?: Dict["pages"]["routes"] }) {
+  const r = item.route!;
+  const info = [
+    t && r.stops > 0 ? (r.stops === 1 ? t.stopsCount1 : t.stopsCount.replace("{n}", String(r.stops))) : null,
+    t && r.nearby > 0 ? (r.nearby === 1 ? t.placesNear1 : t.placesNear.replace("{n}", String(r.nearby))) : null,
+  ].filter(Boolean);
+  return (
+    <article className="group relative flex overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/10 transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+      <div className="flex w-24 shrink-0 items-center justify-center px-2 font-display text-3xl sm:w-28" style={{ background: r.color, color: readableOn(r.color) }} aria-hidden>
+        {r.code}
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col gap-1.5 p-4">
+        <div className="flex flex-wrap items-center gap-1.5">
+          <Badge color={item.color}>{item.categoryName}</Badge>
+          <span className="rounded-full bg-sv-gray px-2 py-0.5 text-[0.7rem] font-bold">{r.fare ?? t?.fareUnknown ?? ""}</span>
+          {item.pending && <span className="rounded-full bg-sv-gray px-2 py-0.5 text-[0.7rem] font-semibold text-neutral-700">{labels.pending}</span>}
+        </div>
+        <h3 className="pr-10 text-base font-extrabold leading-snug">
+          <Link href={item.href} className="after:absolute after:inset-0 focus-visible:outline-none"><span className="sr-only">{r.code} · </span>{item.title}</Link>
+        </h3>
+        <p className="line-clamp-2 text-sm text-neutral-700">{item.summary}</p>
+        {info.length > 0 && <p className="mt-auto pt-1 text-xs text-neutral-600">{info.join(" · ")}</p>}
+      </div>
+      <div className="absolute right-3 top-3 z-10"><FavoriteButton item={item} labels={labels} /></div>
     </article>
   );
 }

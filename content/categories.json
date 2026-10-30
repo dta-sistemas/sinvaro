@@ -334,5 +334,53 @@
     "color": "purple",
     "icon": "Bus",
     "active": true
+  },
+  {
+    "id": "cancun",
+    "kind": "route",
+    "slug": "cancun",
+    "name": {
+      "es": "Cancún",
+      "en": "Cancún"
+    },
+    "description": {
+      "es": "Rutas dentro de la ciudad.",
+      "en": "Routes within the city."
+    },
+    "color": "teal",
+    "icon": "Bus",
+    "active": true
+  },
+  {
+    "id": "zona-hotelera",
+    "kind": "route",
+    "slug": "zona-hotelera",
+    "name": {
+      "es": "Zona Hotelera",
+      "en": "Hotel Zone"
+    },
+    "description": {
+      "es": "Rutas por la Zona Hotelera.",
+      "en": "Routes along the Hotel Zone."
+    },
+    "color": "pink",
+    "icon": "Palmtree",
+    "active": true
+  },
+  {
+    "id": "playa-del-carmen",
+    "kind": "route",
+    "slug": "playa-del-carmen",
+    "name": {
+      "es": "Playa del Carmen",
+      "en": "Playa del Carmen"
+    },
+    "description": {
+      "es": "Rutas en Playa del Carmen.",
+      "en": "Routes in Playa del Carmen."
+    },
+    "color": "purple",
+    "icon": "MapPin",
+    "active": true
   }
 ]

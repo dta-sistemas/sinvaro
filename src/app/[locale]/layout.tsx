@@ -7,6 +7,7 @@ import { LOCALES } from "@/content/schemas";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getLocale } from "@/lib/locale";
 import { SITE_URL, alternatesFor } from "@/lib/site";
+import { getContent } from "@/lib/repositories";
 import { BottomNav } from "@/components/BottomNav";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -30,15 +31,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const locale = await getLocale(params);
   const dict = getDictionary(locale);
+  const showRoutes = (await getContent().routes.list()).length > 0;
   return (
     <html lang={locale === "es" ? "es-MX" : "en"}>
       <body className="min-h-screen antialiased">
         <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-sv-yellow focus:px-4 focus:py-2 focus:font-bold">
           {dict.nav.skip}
         </a>
-        <Header locale={locale} nav={dict.nav} />
+        <Header locale={locale} nav={dict.nav} showRoutes={showRoutes} />
         <main id="contenido">{children}</main>
-        <Footer locale={locale} dict={dict} />
+        <Footer locale={locale} dict={dict} showRoutes={showRoutes} />
         <BottomNav locale={locale} nav={dict.nav} />
       </body>
     </html>

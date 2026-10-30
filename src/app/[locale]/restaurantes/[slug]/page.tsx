@@ -8,6 +8,9 @@ import { formatPrice } from "@/lib/price";
 import { getLocale } from "@/lib/locale";
 import { getContent } from "@/lib/repositories";
 import { buildMetadata } from "@/lib/site";
+import { RoutesNearby } from "@/components/RoutesNearby";
+import { NEARBY_RADIUS_M } from "@/lib/config";
+import { routesNearPoint } from "@/lib/geo";
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
@@ -33,6 +36,7 @@ export default async function RestaurantPage({ params }: P) {
   const tagNames = await repo.tags.list();
   const L = d.labels;
   const card = restaurantToCard(r, (await repo.categories.getById(r.categoryId))!, locale, d);
+  const nearRoutes = card.coords ? routesNearPoint(await repo.routes.list(), [card.coords.lat, card.coords.lng], NEARBY_RADIUS_M) : [];
   const related = (await getAllCards(locale)).restaurants.filter((c) => c.id !== r.id).slice(0, 3);
   const meals = r.mealTypes.map((m) => d.filters[m]).join(", ");
   return (
@@ -47,7 +51,7 @@ export default async function RestaurantPage({ params }: P) {
         ...(r.hours ? [{ label: L.hours, value: r.hours[locale] }] : []),
       ]}
       sections={r.tips[locale].length ? [{ title: L.tips, items: r.tips[locale] }] : []}
-      extra={r.externalUrl ? <p className="mt-8"><a href={r.externalUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline">{r.externalUrl}</a></p> : null}
+      extra={<>{r.externalUrl ? <p className="mt-8"><a href={r.externalUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline">{r.externalUrl}</a></p> : null}<RoutesNearby routes={nearRoutes} locale={locale} dict={d} radius={NEARBY_RADIUS_M} /></>}
       tags={tagNames.filter((t) => r.tagIds.includes(t.id)).map((t) => t.name[locale])}
       related={related} verification={r.verification} osmLink={osmLinkFor(card.coords)}
     />

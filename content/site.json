@@ -1,5 +1,6 @@
 {
   "name": "Sin Varo Cancún",
   "socials": [],
-  "heroImage": null
+  "heroImage": null,
+  "nearbyRadiusMeters": 500
 }

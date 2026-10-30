@@ -1,9 +1,10 @@
 import { z } from "zod";
 import { bandForPrice } from "@/lib/price";
+import { checkRoute } from "@/lib/routes";
 import {
   articleSchema, categorySchema, couponSchema, legalSchema, offerSchema, placeSchema,
-  restaurantSchema, tagSchema, tipSchema,
-  type Article, type Category, type Coupon, type Offer, type Place, type Restaurant, type Tag, type Tip,
+  restaurantSchema, routeSchema, tagSchema, tipSchema,
+  type Article, type Category, type Coupon, type Offer, type Place, type Restaurant, type Route, type Tag, type Tip,
 } from "@/content/schemas";
 import placesJson from "../../../content/places.json";
 import restaurantsJson from "../../../content/restaurants.json";
@@ -15,6 +16,8 @@ import tagsJson from "../../../content/tags.json";
 import tipsJson from "../../../content/tips.json";
 import legalJson from "../../../content/legal.json";
 import sampleOffersJson from "../../../content/samples/offers.sample.json";
+import routesJson from "../../../content/routes.json";
+import sampleRoutesJson from "../../../content/samples/routes.sample.json";
 
 export interface AllContent {
   places: Place[];
@@ -22,6 +25,7 @@ export interface AllContent {
   offers: Offer[];
   coupons: Coupon[];
   articles: Article[];
+  routes: Route[];
   categories: Category[];
   tags: Tag[];
   tips: Tip[];
@@ -64,6 +68,10 @@ export function loadAllContent(): AllContent {
     ...(includeSamples ? parse("offers.sample", offerSchema, sampleOffersJson) : []),
   ];
   const coupons = parse("coupons", couponSchema, couponsJson);
+  const routes = [
+    ...parse("routes", routeSchema, routesJson),
+    ...(includeSamples ? parse("routes.sample", routeSchema, sampleRoutesJson) : []),
+  ];
   const articles = parse("articles", articleSchema, articlesJson);
   const tags = parse("tags", tagSchema, tagsJson);
   const tips = parse("tips", tipSchema, tipsJson);
@@ -74,6 +82,7 @@ export function loadAllContent(): AllContent {
   assertUnique("restaurants", restaurants);
   assertUnique("offers", offers);
   assertUnique("articles", articles);
+  assertUnique("routes", routes);
   assertUnique("coupons", coupons);
 
   const catById = new Map(categories.map((c) => [c.id, c]));
@@ -92,6 +101,8 @@ export function loadAllContent(): AllContent {
   checkRefs("restaurant", "restaurants", restaurants);
   checkRefs("offer", "offers", offers);
   checkRefs("article", "articles", articles);
+  checkRefs("route", "routes", routes);
+  for (const r of routes) { const problem = checkRoute(r); if (problem) throw new Error(problem); }
 
   for (const o of offers) {
     if (o.startsAt && o.endsAt && o.endsAt < o.startsAt) throw new Error(`offers "${o.id}": endsAt anterior a startsAt`);
@@ -127,6 +138,6 @@ export function loadAllContent(): AllContent {
   const offerIds = new Set(offers.map((o) => o.id));
   for (const c of coupons) if (!offerIds.has(c.offerId)) throw new Error(`coupons "${c.id}": offerId "${c.offerId}" no existe`);
 
-  cache = { places, restaurants, offers, coupons, articles, categories, tags, tips, legal };
+  cache = { places, restaurants, offers, coupons, articles, routes, categories, tags, tips, legal };
   return cache;
 }

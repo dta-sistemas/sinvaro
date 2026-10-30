@@ -24,11 +24,18 @@ try {
     const pending = list.filter((i) => i.status === "published" && i.verification.status === "pending").length;
     if (pending) warnings.push(`${pending} ${name} publicados siguen "por verificar" (la web los marca así al público)`);
   }
+  for (const r of c.routes) {
+    if (r.status !== "published") continue;
+    if (r.verification.status === "pending") warnings.push(`ruta ${r.slug}: sigue "por verificar" (la web lo indica al público)`);
+    if (r.stops.length === 0) warnings.push(`ruta ${r.slug}: sin paradas registradas`);
+    if (r.fare.amountMxn === null) warnings.push(`ruta ${r.slug}: tarifa por confirmar`);
+    if (r.isSample) warnings.push(`ruta ${r.slug}: es contenido de ejemplo`);
+  }
   for (const o of c.offers) {
     if (o.status === "published" && getOfferStatus(o) === "expired") warnings.push(`oferta ${o.id}: vencida (se muestra como vencida, no como activa; considera retirarla)`);
     if (o.isSample) warnings.push(`oferta ${o.id}: es contenido de ejemplo`);
   }
-  const usedCats = new Set(all.map((i) => i.categoryId));
+  const usedCats = new Set([...all, ...c.routes].map((i) => i.categoryId));
   for (const cat of c.categories) if (!usedCats.has(cat.id)) warnings.push(`categoría "${cat.id}" sin contenido (su filtro mostrará "sin resultados")`);
   const usedTags = new Set(all.flatMap((i) => i.tagIds));
   for (const t of c.tags) if (!usedTags.has(t.id)) warnings.push(`etiqueta "${t.id}" sin uso`);

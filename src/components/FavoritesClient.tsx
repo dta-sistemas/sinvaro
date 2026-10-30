@@ -18,7 +18,7 @@ export function FavoritesClient({ cards, dict }: { cards: CardItem[]; dict: Dict
     <>
       <p className="mb-4 text-xs text-neutral-600">{dict.pages.favorites.localNote}</p>
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {saved.map((it) => (<li key={it.key}><ItemCard item={it} labels={dict.labels} /></li>))}
+        {saved.map((it) => (<li key={it.key}><ItemCard item={it} labels={dict.labels} routeLabels={dict.pages.routes} /></li>))}
       </ul>
     </>
   );

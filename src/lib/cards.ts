@@ -1,11 +1,13 @@
-import type { Article, Category, Locale, Offer, Place, Restaurant } from "@/content/schemas";
+import type { Article, Category, Locale, Offer, Place, Restaurant, Route } from "@/content/schemas";
 import { fmt, getDictionary, type Dict } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { getContent } from "@/lib/repositories";
 import { getOfferStatus, type OfferStatus } from "@/lib/offers";
 import { filterBands, formatPrice } from "@/lib/price";
+import { NEARBY_RADIUS_M } from "@/lib/config";
+import { nearbyItems } from "@/lib/geo";
 
-export type CardType = "place" | "restaurant" | "offer" | "article";
+export type CardType = "place" | "restaurant" | "offer" | "article" | "route";
 export type CardColor = Category["color"];
 
 /**
@@ -33,6 +35,8 @@ export interface CardItem {
   coords: { lat: number; lng: number; approx: boolean } | null;
   /** Filtros disponibles: nombre del grupo → valores */
   filters: Record<string, string[]>;
+  /** Solo para rutas de autobús */
+  route: { code: string; color: string; fare: string | null; stops: number; nearby: number } | null;
 }
 
 type Photo = { src: string; alt: { es: string; en: string } };
@@ -55,7 +59,7 @@ export function placeToCard(p: Place, cat: Category, l: Locale, d: Dict): CardIt
     title: p.title[l], summary: p.summary[l], categoryId: cat.id, categoryName: cat.name[l], color: cat.color, icon: cat.icon,
     badge: accessBadge(p.access, d), area: p.location.area[l], photo: firstPhoto(p.photos, l),
     pending: p.verification.status === "pending", offerStatus: null, endsAt: null, date: null, coords: coordsOf(p.location),
-    filters: { category: [cat.id], access: [p.access], area: [p.location.area[l]] },
+    filters: { category: [cat.id], access: [p.access], area: [p.location.area[l]] }, route: null,
   };
 }
 
@@ -66,7 +70,7 @@ export function restaurantToCard(r: Restaurant, cat: Category, l: Locale, d: Dic
     badge: r.priceMxn !== null ? { label: formatPrice(r.priceMxn, { free: d.labels.free, from: d.labels.from }), color: "yellow" } : r.priceBand !== "unknown" ? { label: d.filters[r.priceBand], color: "yellow" } : null,
     area: r.location.area[l], photo: firstPhoto(r.photos, l),
     pending: r.verification.status === "pending", offerStatus: null, endsAt: null, date: null, coords: coordsOf(r.location),
-    filters: { category: [cat.id], price: filterBands(r.priceBand), meal: r.mealTypes, area: [r.location.area[l]] },
+    filters: { category: [cat.id], price: filterBands(r.priceBand), meal: r.mealTypes, area: [r.location.area[l]] }, route: null,
   };
 }
 
@@ -77,7 +81,7 @@ export function offerToCard(o: Offer, cat: Category, l: Locale): CardItem {
     title: o.title[l], summary: o.summary[l], categoryId: cat.id, categoryName: cat.name[l], color: cat.color, icon: cat.icon,
     badge: { label: cat.name[l], color: cat.color }, area: o.location.area[l], photo: firstPhoto(o.photos, l),
     pending: o.verification.status === "pending", offerStatus: status, endsAt: o.endsAt, date: null, coords: coordsOf(o.location),
-    filters: { category: [cat.id], status: [status], area: [o.location.area[l]], featured: o.featured ? ["yes"] : [] },
+    filters: { category: [cat.id], status: [status], area: [o.location.area[l]], featured: o.featured ? ["yes"] : [] }, route: null,
   };
 }
 
@@ -88,7 +92,18 @@ export function articleToCard(a: Article, cat: Category, l: Locale): CardItem {
     title: a.title[l], summary: a.excerpt[l], categoryId: cat.id, categoryName: cat.name[l], color: cat.color, icon: cat.icon,
     badge: { label: cat.name[l], color: cat.color }, area: null, photo: ph ? { src: ph.src, alt: ph.alt[l] } : null,
     pending: false, offerStatus: null, endsAt: null, date: a.publishedAt, coords: null,
+    filters: { category: [cat.id] }, route: null,
+  };
+}
+
+/** `nearby` = lugares gratis a menos de NEARBY_RADIUS_M del recorrido. */
+export function routeToCard(r: Route, cat: Category, l: Locale, d: Dict, nearby = 0): CardItem {
+  return {
+    key: `route:${r.id}`, type: "route", id: r.id, href: href(l, "como-llegar", r.slug),
+    title: r.name[l], summary: r.summary[l], categoryId: cat.id, categoryName: cat.name[l], color: cat.color, icon: cat.icon,
+    badge: null, area: cat.name[l], photo: null, pending: r.verification.status === "pending", offerStatus: null, endsAt: null, date: null, coords: null,
     filters: { category: [cat.id] },
+    route: { code: r.code, color: r.color, fare: r.fare.amountMxn === null ? null : r.fare.amountMxn === 0 ? d.labels.free : `$${r.fare.amountMxn} MXN`, stops: r.stops.length, nearby },
   };
 }
 
@@ -97,6 +112,7 @@ export interface AllCards {
   restaurants: CardItem[];
   offers: CardItem[];
   articles: CardItem[];
+  routes: CardItem[];
   categories: Category[];
 }
 
@@ -104,8 +120,8 @@ export interface AllCards {
 export async function getAllCards(locale: Locale): Promise<AllCards> {
   const repo = getContent();
   const d = getDictionary(locale);
-  const [places, restaurants, offers, articles, categories] = await Promise.all([
-    repo.places.list(), repo.restaurants.list(), repo.offers.list(), repo.articles.list(), repo.categories.list(),
+  const [places, restaurants, offers, articles, routes, categories] = await Promise.all([
+    repo.places.list(), repo.restaurants.list(), repo.offers.list(), repo.articles.list(), repo.routes.list(), repo.categories.list(),
   ]);
   const cat = (id: string) => categories.find((c) => c.id === id)!;
   return {
@@ -113,8 +129,15 @@ export async function getAllCards(locale: Locale): Promise<AllCards> {
     restaurants: restaurants.map((r) => restaurantToCard(r, cat(r.categoryId), locale, d)),
     offers: offers.map((o) => offerToCard(o, cat(o.categoryId), locale)),
     articles: articles.map((a) => articleToCard(a, cat(a.categoryId), locale)),
+    routes: routes.map((r) => routeToCard(r, cat(r.categoryId), locale, d, countFreeNearby(r, places))),
     categories,
   };
+}
+
+/** Lugares gratis (con coordenadas) a menos de NEARBY_RADIUS_M del recorrido de la ruta. */
+function countFreeNearby(r: Route, places: Place[]): number {
+  const items = places.filter((p) => p.access === "free").map((p) => ({ coords: p.location.coordinates }));
+  return nearbyItems(r.paths.map((p) => p.coordinates), items, NEARBY_RADIUS_M).length;
 }
 
 export { fmt };
@@ -123,9 +146,9 @@ export { fmt };
 export async function searchCards(locale: Locale, query: string): Promise<AllCards> {
   const repo = getContent();
   const d = getDictionary(locale);
-  const [places, restaurants, offers, articles, categories] = await Promise.all([
+  const [places, restaurants, offers, articles, routes, categories, allPlaces] = await Promise.all([
     repo.places.search(query, locale), repo.restaurants.search(query, locale), repo.offers.search(query, locale),
-    repo.articles.search(query, locale), repo.categories.list(),
+    repo.articles.search(query, locale), repo.routes.search(query, locale), repo.categories.list(), repo.places.list(),
   ]);
   const cat = (id: string) => categories.find((c) => c.id === id)!;
   return {
@@ -133,6 +156,7 @@ export async function searchCards(locale: Locale, query: string): Promise<AllCar
     restaurants: restaurants.map((r) => restaurantToCard(r, cat(r.categoryId), locale, d)),
     offers: offers.map((o) => offerToCard(o, cat(o.categoryId), locale)),
     articles: articles.map((a) => articleToCard(a, cat(a.categoryId), locale)),
+    routes: routes.map((r) => routeToCard(r, cat(r.categoryId), locale, d, countFreeNearby(r, allPlaces))),
     categories,
   };
 }

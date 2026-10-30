@@ -2,7 +2,7 @@
   "name": "sinvaro",
   "version": "0.1.0",
   "private": true,
-  "description": "Sin Varo Cancún — guía de planes gratis, comida barata y ofertas en Cancún",
+  "description": "Sin Varo Canc\u00fan \u2014 gu\u00eda de planes gratis, comida barata y ofertas en Canc\u00fan",
   "scripts": {
     "dev": "next dev",
     "build": "npm run validate:content && next build",
@@ -11,7 +11,8 @@
     "test": "vitest run",
     "validate:content": "tsx scripts/validate-content.ts",
     "content": "tsx scripts/content.ts",
-    "audit": "tsx scripts/audit-site.ts"
+    "audit": "tsx scripts/audit-site.ts",
+    "routes:import": "tsx scripts/routes-import.ts"
   },
   "engines": {
     "node": ">=20"

@@ -23,6 +23,7 @@ npm run dev                    # http://localhost:3000
 | `npm start` | Sirve la compilación (`npm run build` primero) |
 | `npm run validate:content` | Valida los JSON de `content/` (`-- --warnings` muestra avisos) |
 | `npm run content -- <cmd>` | Crea/publica/retira contenido (ver la guía editorial) |
+| `npm run routes:import -- <geojson> <slug>` | Importa una ruta trazada en geojson.io |
 | `npm run audit` | Audita la web en ejecución: enlaces, SEO, avisos de verificación |
 | `npm run typecheck` | TypeScript sin emitir |
 | `npm test` | Pruebas unitarias (Vitest) |
@@ -43,6 +44,7 @@ Todo el contenido vive en `content/*.json`. Cada texto visible es bilingüe: `{ 
 | `restaurants.json` | Comer barato |
 | `offers.json` / `coupons.json` | Ofertas y cupones (hoy vacíos a propósito) |
 | `articles.json` | Blog |
+| `routes.json` | Rutas de autobús («Cómo llegar»); se importan con `npm run routes:import` ([guía](docs/ROUTES_GUIDE.md)) |
 | `categories.json`, `tags.json` | Categorías y etiquetas (`kind`: place, restaurant, offer, article) |
 | `tips.json` | Tips del inicio |
 | `legal.json` | Privacidad y términos (borrador pendiente de revisión legal) |

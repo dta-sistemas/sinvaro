@@ -10,7 +10,7 @@ const labels = getDictionary("es").labels;
 const item: CardItem = {
   key: "place:p1", type: "place", id: "p1", href: "/lugares/p1", title: "Playa Uno", summary: "Resumen", categoryId: "playas", categoryName: "Playas",
   color: "teal", icon: "Waves", badge: { label: "Gratis", color: "pink" }, area: "Zona Hotelera", photo: null, pending: true, offerStatus: null,
-  endsAt: null, date: null, coords: null, filters: {},
+  endsAt: null, date: null, coords: null, filters: {}, route: null,
 };
 
 beforeEach(() => window.localStorage.clear());
@@ -36,5 +36,19 @@ describe("ItemCard", () => {
     const wrapper = screen.getByRole("button", { name: /favoritos/ }).parentElement!;
     expect(wrapper.className).toContain("absolute");
     expect(wrapper.className).toContain("top-3");
+  });
+});
+
+describe("ItemCard de ruta", () => {
+  const route: CardItem = { ...item, key: "route:r1", type: "route", href: "/como-llegar/r-1", title: "Centro – Zona Hotelera", badge: null, categoryName: "Cancún",
+    route: { code: "R-1", color: "#8547E8", fare: null, stops: 1, nearby: 3 } };
+  it("muestra código, tarifa por confirmar, conteos con plural correcto y enlaza a la ruta", () => {
+    const t = getDictionary("es").pages.routes;
+    render(<ItemCard item={route} labels={labels} routeLabels={t} />);
+    expect(screen.getByRole("link", { name: /Centro – Zona Hotelera/ }).getAttribute("href")).toBe("/como-llegar/r-1");
+    expect(screen.getByText("R-1")).toBeTruthy();
+    expect(screen.getByText("Tarifa por confirmar")).toBeTruthy();
+    expect(screen.getByText("1 parada · 3 lugares gratis cerca")).toBeTruthy();
+    expect(screen.getByRole("button", { name: /Guardar en favoritos/ })).toBeTruthy();
   });
 });

@@ -6,6 +6,7 @@ Marca cada punto. Los marcados 🤖 los comprueba `npm run audit` / `npm test` /
 - [ ] Verificar cada lugar y restaurante (precio/acceso, ubicación, horario) y marcarlos `verified` con `lastVerified`. Lo no verificado se publica con la etiqueta "Por verificar".
 - [ ] Revisar las coordenadas del mapa (hoy son **aproximadas**, puestas sin verificar en terreno).
 - [ ] Decidir qué hacer con lo que sigue sin verificar: lanzar con la etiqueta o dejarlo en borrador.
+- [ ] Rutas de autobús: trazar con geojson.io, importar (`docs/ROUTES_GUIDE.md`), verificar recorrido, paradas y tarifa en campo. La sección «Cómo llegar» se oculta sola si no hay rutas publicadas.
 - [ ] Cargar ofertas reales (con vigencia y condiciones) o lanzar con la sección vacía ("No hay ofertas vigentes por ahora").
 - [ ] Fotos con licencia para lugares, restaurantes y artículos; imagen del hero (`site.json`); logotipo definitivo (`Logo.tsx`).
 - [ ] Revisar y ajustar los 3 artículos y las traducciones al inglés.
@@ -30,6 +31,7 @@ Marca cada punto. Los marcados 🤖 los comprueba `npm run audit` / `npm test` /
 - [ ] Menú móvil y barra inferior; navegación con teclado (Tab, foco visible, enlace "Saltar al contenido").
 - [ ] Filtros en cada categoría: barra lateral fija en escritorio, botón "Filtros" (hoja inferior) en móvil, búsqueda dentro de la lista, "Ver más", "Limpiar filtros" y enlaces con `?category=`. (La lógica está cubierta por pruebas automáticas; falta verla en navegador real.)
 - [ ] Favoritos: guardar un lugar y una oferta, recargar, verlos en Guardados, quitarlos.
+- [ ] Cómo llegar: abrir una ruta, cambiar de sentido (ida/vuelta), activar/desactivar «lugares cerca», abrir un pin y su ficha; y desde la ficha de un lugar, abrir una ruta cercana.
 - [ ] Mapa: cargan las teselas de OpenStreetMap, los marcadores abren su ficha y el filtro por tipo funciona.
 - [ ] Selector de idioma ES ⇄ EN en varias páginas (conserva la página).
 - [ ] Búsqueda: con y sin resultados, con acentos ("cancun" encuentra "Cancún").

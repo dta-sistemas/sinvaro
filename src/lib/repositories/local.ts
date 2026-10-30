@@ -85,6 +85,15 @@ export function createLocalRepository(): ContentRepository {
         return others.sort((a, b) => score(b) - score(a) || b.publishedAt.localeCompare(a.publishedAt)).slice(0, limit);
       },
     },
+    routes: {
+      async list(f = {}) { return published(data.routes).filter((r) => !f.categoryId || r.categoryId === f.categoryId); },
+      async getBySlug(slug) { return published(data.routes).find((r) => r.slug === slug) ?? null; },
+      async getById(id) { return published(data.routes).find((r) => r.id === id) ?? null; },
+      async search(q, l) {
+        return published(data.routes).filter((r) =>
+          matchesQuery([r.code, r.name[l], r.summary[l], r.operator ?? "", catName(r.categoryId, l), r.stops.map((s) => s.name).join(" ")].join(" "), q));
+      },
+    },
     categories: {
       async list(kind) { return data.categories.filter((c) => c.active && (!kind || c.kind === kind)); },
       async getById(id) { return data.categories.find((c) => c.id === id) ?? null; },

@@ -52,7 +52,7 @@ function FilterPanel({ groups, selected, countFor, onPick, dict, uid }: {
 }
 
 export function CollectionBrowser({ items, groups: allGroups, dict, pageSize = 12, note, emptyKind = "collection" }: {
-  items: CardItem[]; groups: FilterGroup[]; dict: Dict; pageSize?: number; note?: string; emptyKind?: "collection" | "offers";
+  items: CardItem[]; groups: FilterGroup[]; dict: Dict; pageSize?: number; note?: string; emptyKind?: "collection" | "offers" | "routes";
 }) {
   const uid = useId();
   const dlg = useRef<HTMLDialogElement>(null);
@@ -91,7 +91,8 @@ export function CollectionBrowser({ items, groups: allGroups, dict, pageSize = 1
   const anyActive = activeEntries.length > 0 || q.trim() !== "";
 
   if (items.length === 0) {
-    return <EmptyState title={emptyKind === "offers" ? dict.pages.offers.emptyTitle : f.emptyCollectionTitle} text={emptyKind === "offers" ? dict.pages.offers.emptyText : f.emptyCollectionText} />;
+    const empty = emptyKind === "offers" ? dict.pages.offers : emptyKind === "routes" ? dict.pages.routes : null;
+    return <EmptyState title={empty ? empty.emptyTitle : f.emptyCollectionTitle} text={empty ? empty.emptyText : f.emptyCollectionText} />;
   }
 
   return (
@@ -143,7 +144,7 @@ export function CollectionBrowser({ items, groups: allGroups, dict, pageSize = 1
         ) : (
           <>
             <ul className={`grid gap-4 sm:grid-cols-2 ${groups.length ? "xl:grid-cols-3" : "lg:grid-cols-3"}`}>
-              {shown.map((it) => (<li key={it.key}><ItemCard item={it} labels={dict.labels} /></li>))}
+              {shown.map((it) => (<li key={it.key}><ItemCard item={it} labels={dict.labels} routeLabels={dict.pages.routes} /></li>))}
             </ul>
             {filtered.length > shown.length && (
               <div className="mt-8 text-center">

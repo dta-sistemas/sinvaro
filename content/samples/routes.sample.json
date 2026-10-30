@@ -1,0 +1,77 @@
+[
+  {
+    "id": "sample-route",
+    "slug": "ejemplo-ruta-de-prueba",
+    "status": "published",
+    "createdAt": "2026-10-30",
+    "updatedAt": "2026-10-30",
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
+    "categoryId": "cancun",
+    "tagIds": [],
+    "code": "EJ-1",
+    "name": {
+      "es": "[EJEMPLO] Ruta de prueba",
+      "en": "[SAMPLE] Test route"
+    },
+    "summary": {
+      "es": "Recorrido ficticio solo para probar la web en desarrollo. No es una ruta real.",
+      "en": "Fictional route only to test the site in development. This is not a real route."
+    },
+    "color": "#8547E8",
+    "fare": {
+      "amountMxn": null
+    },
+    "paths": [
+      {
+        "id": "ida",
+        "name": {
+          "es": "Ida",
+          "en": "Outbound"
+        },
+        "coordinates": [
+          [21.16, -86.82],
+          [21.1635, -86.826],
+          [21.1645, -86.829],
+          [21.157, -86.835]
+        ]
+      },
+      {
+        "id": "vuelta",
+        "name": {
+          "es": "Vuelta",
+          "en": "Return"
+        },
+        "coordinates": [
+          [21.157, -86.835],
+          [21.1648, -86.8292],
+          [21.1637, -86.8262],
+          [21.16, -86.82]
+        ]
+      }
+    ],
+    "stops": [
+      {
+        "name": "Parada de ejemplo A",
+        "lat": 21.16,
+        "lng": -86.82,
+        "approximate": true
+      },
+      {
+        "name": "Parada de ejemplo B",
+        "lat": 21.1635,
+        "lng": -86.826,
+        "approximate": true
+      },
+      {
+        "name": "Parada de ejemplo C",
+        "lat": 21.157,
+        "lng": -86.835,
+        "approximate": true
+      }
+    ],
+    "isSample": true
+  }
+]

@@ -10,7 +10,7 @@ const dict = getDictionary("es");
 const mk = (id: string, title: string, cat: string, area: string): CardItem => ({
   key: `place:${id}`, type: "place", id, href: `/lugares/${id}`, title, summary: `Resumen de ${title}`, categoryId: cat, categoryName: cat,
   color: "teal", icon: "Waves", badge: null, area, photo: null, pending: true, offerStatus: null, endsAt: null, date: null, coords: null,
-  filters: { category: [cat], area: [area] },
+  filters: { category: [cat], area: [area] }, route: null,
 });
 const items = [mk("a", "Playa Uno", "playas", "Zona Hotelera"), mk("b", "Parque Dos", "parques", "Centro"), mk("c", "Playa Tres", "playas", "Centro")];
 const groups = [

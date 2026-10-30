@@ -18,6 +18,7 @@ export const SEGMENTS = {
   terminos: { es: "terminos", en: "terms" },
   lugares: { es: "lugares", en: "places" },
   restaurantes: { es: "restaurantes", en: "eats" },
+  "como-llegar": { es: "como-llegar", en: "getting-around" },
   blog: { es: "blog", en: "blog" },
 } as const;
 

@@ -20,7 +20,7 @@ export default async function SearchPage({ params, searchParams }: P) {
   const raw = (await searchParams).q;
   const q = (Array.isArray(raw) ? raw[0] : raw ?? "").trim().slice(0, 80);
   const res = q.length >= 2 ? await searchCards(locale, q) : null;
-  const groups = res ? ([["place", res.places], ["restaurant", res.restaurants], ["offer", res.offers], ["article", res.articles]] as const).filter(([, l]) => l.length) : [];
+  const groups = res ? ([["place", res.places], ["restaurant", res.restaurants], ["offer", res.offers], ["route", res.routes], ["article", res.articles]] as const).filter(([, l]) => l.length) : [];
 
   return (
     <>
@@ -39,7 +39,7 @@ export default async function SearchPage({ params, searchParams }: P) {
               <section key={type} className="mb-10">
                 <SectionHeading title={t.types[type]} />
                 <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {list.map((c) => (<li key={c.key}><ItemCard item={c} labels={d.labels} /></li>))}
+                  {list.map((c) => (<li key={c.key}><ItemCard item={c} labels={d.labels} routeLabels={d.pages.routes} /></li>))}
                 </ul>
               </section>
             ))

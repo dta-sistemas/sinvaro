@@ -5,6 +5,7 @@
 | Auditoría | ✔ Repositorio vacío (solo README) |
 | 1 — Frontend público con contenido local | ✔ Aprobada |
 | 1.1 — Preparación editorial y de lanzamiento | ✔ Implementada, pendiente de autorización |
+| 1.2 — Cómo llegar (rutas de autobús): base técnica | ✔ Implementada; faltan las rutas reales que trazará el equipo |
 | 2 — Backend Laravel + API REST + PostgreSQL | Pendiente |
 | 3 — Panel administrativo | Pendiente |
 | 4 — Integración y cambio de fuente de datos | Pendiente |

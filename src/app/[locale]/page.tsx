@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/site";
 import { Icon, ButtonLink, EmptyState, SectionHeading } from "@/components/ui";
 import { ItemCard } from "@/components/cards";
 import { NewsletterForm } from "@/components/forms";
-import { COLOR } from "@/lib/colors";
+import { COLOR, readableOn } from "@/lib/colors";
 import site from "../../../content/site.json";
 
 export const revalidate = 3600; // refresca la vigencia de ofertas cada hora
@@ -143,6 +143,26 @@ export default async function Home({ params }: P) {
         </section>
         <section className="rounded-2xl bg-sv-yellow p-6"><NewsletterForm locale={locale} dict={d} /></section>
       </div>
+
+      {cards.routes.length > 0 && (
+        <section aria-labelledby="getaround" className="mx-auto mt-14 max-w-7xl px-4">
+          <div className="relative overflow-hidden rounded-3xl bg-sv-teal p-6 sm:p-10">
+            <span aria-hidden className="absolute -right-10 -top-10 h-52 w-52 rounded-full bg-white/30" />
+            <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+              <div className="max-w-xl">
+                <h2 id="getaround" className="font-display text-3xl uppercase leading-none sm:text-4xl">{d.pages.routes.a} <span className="text-white">{d.pages.routes.b}</span></h2>
+                <p className="mt-3 text-base">{d.pages.routes.intro}</p>
+                <div className="mt-5"><ButtonLink href={href(locale, "como-llegar")} variant="black">{d.pages.routes.sectionNav}</ButtonLink></div>
+              </div>
+              <ul className="flex flex-wrap gap-2" aria-label={d.nav.getAround}>
+                {cards.routes.slice(0, 6).map((r) => (
+                  <li key={r.key}><Link href={r.href} className="inline-flex min-h-11 min-w-14 items-center justify-center rounded-xl px-3 font-display text-lg shadow ring-2 ring-white" style={{ background: r.route!.color, color: readableOn(r.route!.color) }}><span className="sr-only">{r.title}</span><span aria-hidden>{r.route!.code}</span></Link></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
 
       {cards.articles.length > 0 && (
         <section className="mx-auto mt-14 max-w-7xl px-4">
