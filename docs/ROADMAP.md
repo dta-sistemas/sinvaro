@@ -3,7 +3,8 @@
 | Fase | Estado |
 |---|---|
 | Auditoría | ✔ Repositorio vacío (solo README) |
-| 1 — Frontend público con contenido local | ✔ Implementada, pendiente de aprobación |
+| 1 — Frontend público con contenido local | ✔ Aprobada |
+| 1.1 — Preparación editorial y de lanzamiento | ✔ Implementada, pendiente de autorización |
 | 2 — Backend Laravel + API REST + PostgreSQL | Pendiente |
 | 3 — Panel administrativo | Pendiente |
 | 4 — Integración y cambio de fuente de datos | Pendiente |

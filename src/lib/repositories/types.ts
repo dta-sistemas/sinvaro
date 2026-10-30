@@ -1,4 +1,4 @@
-import type { Article, Category, Coupon, Locale, Offer, Place, Restaurant } from "@/content/schemas";
+import type { Article, Category, Coupon, Locale, Offer, Place, Restaurant, Tag } from "@/content/schemas";
 import type { OfferStatus } from "@/lib/offers";
 
 /**
@@ -42,7 +42,12 @@ export interface CategoriesRepository {
   getById(id: string): Promise<Category | null>;
 }
 
+export interface TagsRepository {
+  list(): Promise<Tag[]>;
+}
+
 export interface ContentRepository {
+  tags: TagsRepository;
   places: PlacesRepository;
   restaurants: RestaurantsRepository;
   offers: OffersRepository;

@@ -5,12 +5,23 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "transporte",
-    "tagIds": ["ahorro"],
-    "title": { "es": "Cómo moverte en Cancún con poco dinero", "en": "How to get around Cancún on a small budget" },
-    "excerpt": { "es": "Ideas prácticas para desplazarte por la ciudad y la Zona Hotelera sin gastar de más.", "en": "Practical ideas to get around the city and the Hotel Zone without overspending." },
+    "tagIds": [
+      "ahorro"
+    ],
+    "title": {
+      "es": "Cómo moverte en Cancún con poco dinero",
+      "en": "How to get around Cancún on a small budget"
+    },
+    "excerpt": {
+      "es": "Ideas prácticas para desplazarte por la ciudad y la Zona Hotelera sin gastar de más.",
+      "en": "Practical ideas to get around the city and the Hotel Zone without overspending."
+    },
     "author": "Equipo Sin Varo",
     "publishedAt": "2026-10-29",
     "body": {
@@ -40,12 +51,24 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "guias",
-    "tagIds": ["playa-publica", "gratis"],
-    "title": { "es": "Guía para encontrar playas públicas en Cancún", "en": "A guide to finding public beaches in Cancún" },
-    "excerpt": { "es": "Qué tener en cuenta para disfrutar el mar sin pagar entrada y sin invadir propiedad privada.", "en": "What to keep in mind to enjoy the sea without paying entry and without trespassing on private property." },
+    "tagIds": [
+      "playa-publica",
+      "gratis"
+    ],
+    "title": {
+      "es": "Guía para encontrar playas públicas en Cancún",
+      "en": "A guide to finding public beaches in Cancún"
+    },
+    "excerpt": {
+      "es": "Qué tener en cuenta para disfrutar el mar sin pagar entrada y sin invadir propiedad privada.",
+      "en": "What to keep in mind to enjoy the sea without paying entry and without trespassing on private property."
+    },
     "author": "Equipo Sin Varo",
     "publishedAt": "2026-10-29",
     "body": {
@@ -75,12 +98,23 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "ahorro",
-    "tagIds": ["ahorro"],
-    "title": { "es": "Ideas para ahorrar en tu viaje a Cancún", "en": "Ideas to save money on your Cancún trip" },
-    "excerpt": { "es": "Un plan sencillo para disfrutar más gastando menos, sin renunciar a lo importante.", "en": "A simple plan to enjoy more while spending less, without giving up what matters." },
+    "tagIds": [
+      "ahorro"
+    ],
+    "title": {
+      "es": "Ideas para ahorrar en tu viaje a Cancún",
+      "en": "Ideas to save money on your Cancún trip"
+    },
+    "excerpt": {
+      "es": "Un plan sencillo para disfrutar más gastando menos, sin renunciar a lo importante.",
+      "en": "A simple plan to enjoy more while spending less, without giving up what matters."
+    },
     "author": "Equipo Sin Varo",
     "publishedAt": "2026-10-29",
     "body": {

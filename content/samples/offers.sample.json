@@ -5,18 +5,43 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "2x1",
     "tagIds": [],
-    "title": { "es": "[EJEMPLO] Promoción activa", "en": "[SAMPLE] Active promotion" },
+    "title": {
+      "es": "[EJEMPLO] Promoción activa",
+      "en": "[SAMPLE] Active promotion"
+    },
     "business": "Negocio de ejemplo",
-    "benefit": { "es": "Beneficio de ejemplo", "en": "Sample benefit" },
-    "summary": { "es": "Oferta ficticia solo para probar la web en desarrollo.", "en": "Fictional offer only for testing the site in development." },
-    "conditions": { "es": ["Esto no es una oferta real."], "en": ["This is not a real offer."] },
+    "benefit": {
+      "es": "Beneficio de ejemplo",
+      "en": "Sample benefit"
+    },
+    "summary": {
+      "es": "Oferta ficticia solo para probar la web en desarrollo.",
+      "en": "Fictional offer only for testing the site in development."
+    },
+    "conditions": {
+      "es": [
+        "Esto no es una oferta real."
+      ],
+      "en": [
+        "This is not a real offer."
+      ]
+    },
     "startsAt": null,
     "endsAt": "2099-12-31",
-    "location": { "area": { "es": "Zona de ejemplo", "en": "Sample area" }, "coordinates": null },
+    "location": {
+      "area": {
+        "es": "Zona de ejemplo",
+        "en": "Sample area"
+      },
+      "coordinates": null
+    },
     "couponCode": null,
     "redeemUrl": null,
     "featured": true,
@@ -28,18 +53,43 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "descuentos",
     "tagIds": [],
-    "title": { "es": "[EJEMPLO] Promoción vencida", "en": "[SAMPLE] Expired promotion" },
+    "title": {
+      "es": "[EJEMPLO] Promoción vencida",
+      "en": "[SAMPLE] Expired promotion"
+    },
     "business": "Negocio de ejemplo",
-    "benefit": { "es": "Beneficio de ejemplo", "en": "Sample benefit" },
-    "summary": { "es": "Oferta ficticia vencida para probar el estado de vigencia.", "en": "Fictional expired offer to test the validity state." },
-    "conditions": { "es": ["Esto no es una oferta real."], "en": ["This is not a real offer."] },
+    "benefit": {
+      "es": "Beneficio de ejemplo",
+      "en": "Sample benefit"
+    },
+    "summary": {
+      "es": "Oferta ficticia vencida para probar el estado de vigencia.",
+      "en": "Fictional expired offer to test the validity state."
+    },
+    "conditions": {
+      "es": [
+        "Esto no es una oferta real."
+      ],
+      "en": [
+        "This is not a real offer."
+      ]
+    },
     "startsAt": "2020-01-01",
     "endsAt": "2020-01-31",
-    "location": { "area": { "es": "Zona de ejemplo", "en": "Sample area" }, "coordinates": null },
+    "location": {
+      "area": {
+        "es": "Zona de ejemplo",
+        "en": "Sample area"
+      },
+      "coordinates": null
+    },
     "couponCode": "EJEMPLO",
     "redeemUrl": null,
     "featured": false,

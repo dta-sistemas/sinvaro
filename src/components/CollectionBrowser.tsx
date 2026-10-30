@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import type { CardItem } from "@/lib/cards";
 import { fmt, type Dict } from "@/i18n/dictionaries";
-import { applyFilters, type FilterGroup } from "@/lib/filters";
+import { applyFilters, presentGroups, type FilterGroup } from "@/lib/filters";
 import { EmptyState } from "./ui";
 import { ItemCard } from "./cards";
 
@@ -16,9 +16,10 @@ export function Chip({ active, onClick, children }: { active: boolean; onClick: 
   );
 }
 
-export function CollectionBrowser({ items, groups, dict, pageSize = 12, note, emptyKind = "collection" }: {
+export function CollectionBrowser({ items, groups: allGroups, dict, pageSize = 12, note, emptyKind = "collection" }: {
   items: CardItem[]; groups: FilterGroup[]; dict: Dict; pageSize?: number; note?: string; emptyKind?: "collection" | "offers";
 }) {
+  const groups = useMemo(() => presentGroups(items, allGroups), [items, allGroups]);
   const [selected, setSelected] = useState<Record<string, string | undefined>>({});
   const [visible, setVisible] = useState(pageSize);
   const f = dict.filters;

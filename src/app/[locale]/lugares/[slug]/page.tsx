@@ -35,6 +35,7 @@ export default async function PlacePage({ params }: P) {
   const place = await repo.places.getBySlug(slug);
   if (!place) notFound();
   const d = getDictionary(locale);
+  const tagNames = await repo.tags.list();
   const cat = (await repo.categories.getById(place.categoryId))!;
   const card = placeToCard(place, cat, locale, d);
   const { places } = await getAllCards(locale);
@@ -56,6 +57,7 @@ export default async function PlacePage({ params }: P) {
         ...(place.howToGet ? [{ title: L.howToGet, text: place.howToGet[locale] }] : []),
         ...(place.tips[locale].length ? [{ title: L.tips, items: place.tips[locale] }] : []),
       ]}
+      tags={tagNames.filter((t) => place.tagIds.includes(t.id)).map((t) => t.name[locale])}
       related={related} verification={place.verification} osmLink={osmLinkFor(card.coords)}
     />
   );

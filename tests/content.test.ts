@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadAllContent } from "@/lib/content/load";
 import { offerSchema, placeSchema } from "@/content/schemas";
-import { applyFilters } from "@/lib/filters";
+import { applyFilters, presentGroups } from "@/lib/filters";
 import type { CardItem } from "@/lib/cards";
 
 describe("contenido real del repositorio", () => {
@@ -35,5 +35,12 @@ describe("filtros", () => {
     expect(applyFilters(items, {}).length).toBe(2);
     expect(applyFilters(items, { category: "playas" }).map((i) => i.key)).toEqual(["a"]);
     expect(applyFilters(items, { category: "playas", price: "under100" })).toEqual([]);
+  });
+  it("oculta opciones sin contenido", () => {
+    const groups = [{ key: "category", label: "c", options: [{ value: "playas", label: "P" }, { value: "tacos", label: "T" }] }, { key: "price", label: "p", options: [{ value: "under50", label: "x" }] }];
+    const out = presentGroups([items[0]], groups);
+    expect(out.map((g) => g.key)).toEqual(["category", "price"]);
+    expect(out[0].options.map((o) => o.value)).toEqual(["playas"]);
+    expect(presentGroups([mk("z", {})], groups)).toEqual([]);
   });
 });

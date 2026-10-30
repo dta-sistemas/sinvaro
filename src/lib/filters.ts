@@ -24,3 +24,10 @@ export interface FilterGroup {
 export function applyFilters(items: CardItem[], selected: Record<string, string | undefined>): CardItem[] {
   return items.filter((it) => Object.entries(selected).every(([k, v]) => !v || (it.filters[k] ?? []).includes(v)));
 }
+
+/** Solo las opciones que tienen al menos un elemento (evita chips que llevan a "sin resultados"). */
+export function presentGroups(items: CardItem[], groups: FilterGroup[]): FilterGroup[] {
+  return groups
+    .map((g) => ({ ...g, options: g.options.filter((o) => items.some((i) => (i.filters[g.key] ?? []).includes(o.value))) }))
+    .filter((g) => g.options.length > 0);
+}

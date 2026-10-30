@@ -5,20 +5,40 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "playas",
-    "tagIds": ["playa-publica", "gratis", "zona-hotelera"],
-    "title": { "es": "Playa Delfines", "en": "Delfines Beach" },
-    "summary": { "es": "Playa pública en la Zona Hotelera con vista abierta al Caribe.", "en": "Public beach in the Hotel Zone with open Caribbean views." },
+    "tagIds": [
+      "playa-publica",
+      "gratis",
+      "zona-hotelera"
+    ],
+    "title": {
+      "es": "Playa Delfines",
+      "en": "Delfines Beach"
+    },
+    "summary": {
+      "es": "Playa pública en la Zona Hotelera con vista abierta al Caribe.",
+      "en": "Public beach in the Hotel Zone with open Caribbean views."
+    },
     "description": {
       "es": "Playa pública de la Zona Hotelera de Cancún, conocida por su vista abierta al mar Caribe. Es una de las opciones más mencionadas cuando se busca disfrutar el mar sin pagar entrada.",
       "en": "A public beach in Cancún's Hotel Zone, known for its open view of the Caribbean Sea. It is one of the most mentioned options for enjoying the sea without paying an entrance fee."
     },
     "location": {
-      "area": { "es": "Zona Hotelera", "en": "Hotel Zone" },
+      "area": {
+        "es": "Zona Hotelera",
+        "en": "Hotel Zone"
+      },
       "address": "Blvd. Kukulcán, Zona Hotelera",
-      "coordinates": { "lat": 21.0585, "lng": -86.7745, "precision": "approximate" }
+      "coordinates": {
+        "lat": 21.0585,
+        "lng": -86.7745,
+        "precision": "approximate"
+      }
     },
     "access": "free",
     "isSecret": false,
@@ -27,8 +47,14 @@
       "en": "It is located on Blvd. Kukulcán, in the Hotel Zone. Confirm the current public transport route before you go."
     },
     "tips": {
-      "es": ["Ir temprano suele ayudar a encontrar un lugar más tranquilo.", "Lleva agua y protección solar; confirma qué servicios hay disponibles antes de ir."],
-      "en": ["Going early usually helps you find a quieter spot.", "Bring water and sun protection; confirm which services are available before you go."]
+      "es": [
+        "Ir temprano suele ayudar a encontrar un lugar más tranquilo.",
+        "Lleva agua y protección solar; confirma qué servicios hay disponibles antes de ir."
+      ],
+      "en": [
+        "Going early usually helps you find a quieter spot.",
+        "Bring water and sun protection; confirm which services are available before you go."
+      ]
     }
   },
   {
@@ -37,25 +63,48 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "parques",
-    "tagIds": ["gratis", "centro"],
-    "title": { "es": "Parque de las Palapas", "en": "Parque de las Palapas" },
-    "summary": { "es": "Parque céntrico con ambiente local, comida y eventos.", "en": "Downtown park with local atmosphere, food and events." },
+    "tagIds": [
+      "gratis",
+      "centro"
+    ],
+    "title": {
+      "es": "Parque de las Palapas",
+      "en": "Parque de las Palapas"
+    },
+    "summary": {
+      "es": "Parque céntrico con ambiente local, comida y eventos.",
+      "en": "Downtown park with local atmosphere, food and events."
+    },
     "description": {
       "es": "Parque en el centro de Cancún donde suele haber ambiente local, puestos de comida y eventos. Los horarios y la programación cambian, así que conviene confirmarlos antes de ir.",
       "en": "A park in downtown Cancún where you can usually find local atmosphere, food stalls and events. Hours and programming change, so it is best to confirm them before you go."
     },
     "location": {
-      "area": { "es": "Centro de Cancún", "en": "Downtown Cancún" },
-      "coordinates": { "lat": 21.1633, "lng": -86.8254, "precision": "approximate" }
+      "area": {
+        "es": "Centro de Cancún",
+        "en": "Downtown Cancún"
+      },
+      "coordinates": {
+        "lat": 21.1633,
+        "lng": -86.8254,
+        "precision": "approximate"
+      }
     },
     "access": "free",
     "isSecret": false,
     "tips": {
-      "es": ["Revisa la programación de eventos antes de ir."],
-      "en": ["Check the events schedule before you go."]
+      "es": [
+        "Revisa la programación de eventos antes de ir."
+      ],
+      "en": [
+        "Check the events schedule before you go."
+      ]
     }
   },
   {
@@ -64,25 +113,48 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "naturaleza",
-    "tagIds": ["gratis", "zona-hotelera"],
-    "title": { "es": "Malecón Tajamar", "en": "Malecón Tajamar" },
-    "summary": { "es": "Área junto a la laguna Nichupté con manglar para caminar.", "en": "Area by the Nichupté lagoon with mangrove to walk through." },
+    "tagIds": [
+      "gratis",
+      "zona-hotelera"
+    ],
+    "title": {
+      "es": "Malecón Tajamar",
+      "en": "Malecón Tajamar"
+    },
+    "summary": {
+      "es": "Área junto a la laguna Nichupté con manglar para caminar.",
+      "en": "Area by the Nichupté lagoon with mangrove to walk through."
+    },
     "description": {
       "es": "Espacio junto a la laguna Nichupté con manglar y andadores, pensado para caminar y observar la naturaleza. Es un área de manglar: respeta las señales y no dejes basura.",
       "en": "A space beside the Nichupté lagoon with mangrove and walkways, good for walking and observing nature. It is a mangrove area: follow the signs and do not leave trash."
     },
     "location": {
-      "area": { "es": "Malecón Tajamar", "en": "Malecón Tajamar" },
-      "coordinates": { "lat": 21.1385, "lng": -86.767, "precision": "approximate" }
+      "area": {
+        "es": "Malecón Tajamar",
+        "en": "Malecón Tajamar"
+      },
+      "coordinates": {
+        "lat": 21.1385,
+        "lng": -86.767,
+        "precision": "approximate"
+      }
     },
     "access": "free",
     "isSecret": false,
     "tips": {
-      "es": ["Confirma horarios y reglas de acceso antes de ir."],
-      "en": ["Confirm hours and access rules before you go."]
+      "es": [
+        "Confirma horarios y reglas de acceso antes de ir."
+      ],
+      "en": [
+        "Confirm hours and access rules before you go."
+      ]
     }
   },
   {
@@ -91,22 +163,45 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "playas",
-    "tagIds": ["playa-publica"],
-    "title": { "es": "Punta Nizuc", "en": "Punta Nizuc" },
-    "summary": { "es": "Zona costera al sur de la Zona Hotelera, poco concurrida.", "en": "Coastal area at the south end of the Hotel Zone, less crowded." },
+    "tagIds": [
+      "playa-publica"
+    ],
+    "title": {
+      "es": "Punta Nizuc",
+      "en": "Punta Nizuc"
+    },
+    "summary": {
+      "es": "Zona costera al sur de la Zona Hotelera, poco concurrida.",
+      "en": "Coastal area at the south end of the Hotel Zone, less crowded."
+    },
     "description": {
       "es": "Zona costera al extremo sur de la Zona Hotelera, cercana al arrecife. Antes de ir, confirma accesos, reglas ambientales y si alguna actividad requiere pago o permiso.",
       "en": "A coastal area at the far south of the Hotel Zone, close to the reef. Before you go, confirm access, environmental rules and whether any activity requires payment or a permit."
     },
-    "location": { "area": { "es": "Sur de la Zona Hotelera", "en": "South Hotel Zone" }, "coordinates": null },
+    "location": {
+      "area": {
+        "es": "Sur de la Zona Hotelera",
+        "en": "South Hotel Zone"
+      },
+      "coordinates": null
+    },
     "access": "unknown",
     "isSecret": true,
     "tips": {
-      "es": ["No ingreses a propiedades privadas ni a zonas restringidas.", "Cuida el arrecife: evita tocar corales y usa protector solar biodegradable."],
-      "en": ["Do not enter private property or restricted areas.", "Protect the reef: avoid touching corals and use biodegradable sunscreen."]
+      "es": [
+        "No ingreses a propiedades privadas ni a zonas restringidas.",
+        "Cuida el arrecife: evita tocar corales y usa protector solar biodegradable."
+      ],
+      "en": [
+        "Do not enter private property or restricted areas.",
+        "Protect the reef: avoid touching corals and use biodegradable sunscreen."
+      ]
     }
   },
   {
@@ -115,22 +210,43 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "naturaleza",
     "tagIds": [],
-    "title": { "es": "Ruta de los Cenotes", "en": "Ruta de los Cenotes" },
-    "summary": { "es": "Cenotes cerca de Puerto Morelos para una escapada de naturaleza.", "en": "Cenotes near Puerto Morelos for a nature getaway." },
+    "title": {
+      "es": "Ruta de los Cenotes",
+      "en": "Ruta de los Cenotes"
+    },
+    "summary": {
+      "es": "Cenotes cerca de Puerto Morelos para una escapada de naturaleza.",
+      "en": "Cenotes near Puerto Morelos for a nature getaway."
+    },
     "description": {
       "es": "Ruta con varios cenotes en la zona de Puerto Morelos. Cada cenote maneja sus propias condiciones: algunos cobran entrada o requieren reservación, así que confirma precios, horarios y reglas directamente con cada uno.",
       "en": "A route with several cenotes in the Puerto Morelos area. Each cenote sets its own conditions: some charge an entrance fee or require a reservation, so confirm prices, hours and rules directly with each one."
     },
-    "location": { "area": { "es": "Puerto Morelos", "en": "Puerto Morelos" }, "coordinates": null },
+    "location": {
+      "area": {
+        "es": "Puerto Morelos",
+        "en": "Puerto Morelos"
+      },
+      "coordinates": null
+    },
     "access": "paid",
     "isSecret": true,
     "tips": {
-      "es": ["Confirma el costo y los horarios antes de salir.", "Usa protector solar biodegradable y respeta las reglas de cada cenote."],
-      "en": ["Confirm the cost and hours before you leave.", "Use biodegradable sunscreen and follow each cenote's rules."]
+      "es": [
+        "Confirma el costo y los horarios antes de salir.",
+        "Usa protector solar biodegradable y respeta las reglas de cada cenote."
+      ],
+      "en": [
+        "Confirm the cost and hours before you leave.",
+        "Use biodegradable sunscreen and follow each cenote's rules."
+      ]
     }
   }
 ]

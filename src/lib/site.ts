@@ -18,6 +18,7 @@ export function buildMetadata(opts: {
 }): Metadata {
   const d = getDictionary(opts.locale);
   const alternates = alternatesFor(opts.path, opts.locale);
+  const image = opts.image ? (opts.image.startsWith("http") ? opts.image : `${SITE_URL}${opts.image}`) : `${SITE_URL}${opts.locale === "es" ? "" : "/en"}/opengraph-image`;
   return {
     title: opts.title,
     description: opts.description,
@@ -26,8 +27,8 @@ export function buildMetadata(opts: {
     openGraph: {
       title: opts.title, description: opts.description, url: alternates.canonical, siteName: d.site.name,
       locale: opts.locale === "es" ? "es_MX" : "en_US", type: opts.type ?? "website",
-      images: opts.image ? [{ url: opts.image }] : undefined,
+      images: [{ url: image }],
     },
-    twitter: { card: "summary_large_image", title: opts.title, description: opts.description },
+    twitter: { card: "summary_large_image", title: opts.title, description: opts.description, images: [image] },
   };
 }

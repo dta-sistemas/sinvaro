@@ -32,6 +32,7 @@ export default async function OfferPage({ params }: P) {
   const o = await repo.offers.getBySlug((await params).slug);
   if (!o) notFound();
   const d = getDictionary(locale);
+  const tagNames = await repo.tags.list();
   const L = d.labels;
   const card = offerToCard(o, (await repo.categories.getById(o.categoryId))!, locale);
   const status = card.offerStatus!;
@@ -63,6 +64,7 @@ export default async function OfferPage({ params }: P) {
       extra={o.redeemUrl && status !== "expired" ? (
         <div className="mt-8"><a href={o.redeemUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center rounded-xl bg-sv-pink px-5 text-sm font-extrabold uppercase text-white">{L.consult}</a><p className="mt-2 text-xs text-neutral-600">{L.verifyDirect}</p></div>
       ) : null}
+      tags={tagNames.filter((t) => o.tagIds.includes(t.id)).map((t) => t.name[locale])}
       related={related} verification={o.verification} osmLink={osmLinkFor(card.coords)}
     />
   );

@@ -5,23 +5,49 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "mercados",
-    "tagIds": ["centro", "mercado"],
-    "title": { "es": "Mercado 28", "en": "Mercado 28" },
-    "summary": { "es": "Mercado del centro con puestos de comida y artesanías.", "en": "Downtown market with food stalls and crafts." },
+    "tagIds": [
+      "centro",
+      "mercado"
+    ],
+    "title": {
+      "es": "Mercado 28",
+      "en": "Mercado 28"
+    },
+    "summary": {
+      "es": "Mercado del centro con puestos de comida y artesanías.",
+      "en": "Downtown market with food stalls and crafts."
+    },
     "description": {
       "es": "Mercado en el centro de Cancún con puestos de comida y artesanías. Los precios varían según el puesto; compáralos antes de pedir.",
       "en": "A market in downtown Cancún with food stalls and crafts. Prices vary by stall; compare them before ordering."
     },
     "location": {
-      "area": { "es": "Centro de Cancún", "en": "Downtown Cancún" },
-      "coordinates": { "lat": 21.1641, "lng": -86.828, "precision": "approximate" }
+      "area": {
+        "es": "Centro de Cancún",
+        "en": "Downtown Cancún"
+      },
+      "coordinates": {
+        "lat": 21.1641,
+        "lng": -86.828,
+        "precision": "approximate"
+      }
     },
     "mealTypes": [],
     "priceBand": "unknown",
-    "tips": { "es": ["Pregunta el precio antes de pedir."], "en": ["Ask the price before ordering."] }
+    "tips": {
+      "es": [
+        "Pregunta el precio antes de pedir."
+      ],
+      "en": [
+        "Ask the price before ordering."
+      ]
+    }
   },
   {
     "id": "rest-mercado-23",
@@ -29,19 +55,44 @@
     "status": "published",
     "createdAt": "2026-10-29",
     "updatedAt": "2026-10-29",
-    "verification": { "status": "pending", "lastVerified": null },
+    "verification": {
+      "status": "pending",
+      "lastVerified": null
+    },
     "photos": [],
     "categoryId": "mercados",
-    "tagIds": ["centro", "mercado"],
-    "title": { "es": "Mercado 23", "en": "Mercado 23" },
-    "summary": { "es": "Mercado tradicional del centro con comida local.", "en": "Traditional downtown market with local food." },
+    "tagIds": [
+      "centro",
+      "mercado"
+    ],
+    "title": {
+      "es": "Mercado 23",
+      "en": "Mercado 23"
+    },
+    "summary": {
+      "es": "Mercado tradicional del centro con comida local.",
+      "en": "Traditional downtown market with local food."
+    },
     "description": {
       "es": "Mercado tradicional en el centro de Cancún donde hay comida local. Los puestos y precios cambian, así que confirma directamente en el lugar.",
       "en": "A traditional market in downtown Cancún with local food. Stalls and prices change, so confirm on site."
     },
-    "location": { "area": { "es": "Centro de Cancún", "en": "Downtown Cancún" }, "coordinates": null },
+    "location": {
+      "area": {
+        "es": "Centro de Cancún",
+        "en": "Downtown Cancún"
+      },
+      "coordinates": null
+    },
     "mealTypes": [],
     "priceBand": "unknown",
-    "tips": { "es": ["Lleva efectivo por si algún puesto no acepta tarjeta."], "en": ["Bring cash in case a stall does not accept cards."] }
+    "tips": {
+      "es": [
+        "Lleva efectivo por si algún puesto no acepta tarjeta."
+      ],
+      "en": [
+        "Bring cash in case a stall does not accept cards."
+      ]
+    }
   }
 ]

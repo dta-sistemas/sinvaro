@@ -19,6 +19,7 @@ export function createLocalRepository(): ContentRepository {
   const tagNames = (ids: string[], l: Locale) => ids.map((t) => data.tags.find((x) => x.id === t)?.name[l] ?? "").join(" ");
 
   return {
+    tags: { async list() { return data.tags; } },
     places: {
       async list(f = {}) {
         return published(data.places).filter(

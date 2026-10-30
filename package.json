@@ -9,7 +9,9 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "validate:content": "tsx scripts/validate-content.ts"
+    "validate:content": "tsx scripts/validate-content.ts",
+    "content": "tsx scripts/content.ts",
+    "audit": "tsx scripts/audit-site.ts"
   },
   "engines": {
     "node": ">=20"

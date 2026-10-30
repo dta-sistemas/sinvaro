@@ -29,6 +29,7 @@ export default async function RestaurantPage({ params }: P) {
   const r = await repo.restaurants.getBySlug((await params).slug);
   if (!r) notFound();
   const d = getDictionary(locale);
+  const tagNames = await repo.tags.list();
   const L = d.labels;
   const card = restaurantToCard(r, (await repo.categories.getById(r.categoryId))!, locale, d);
   const related = (await getAllCards(locale)).restaurants.filter((c) => c.id !== r.id).slice(0, 3);
@@ -46,6 +47,7 @@ export default async function RestaurantPage({ params }: P) {
       ]}
       sections={r.tips[locale].length ? [{ title: L.tips, items: r.tips[locale] }] : []}
       extra={r.externalUrl ? <p className="mt-8"><a href={r.externalUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline">{r.externalUrl}</a></p> : null}
+      tags={tagNames.filter((t) => r.tagIds.includes(t.id)).map((t) => t.name[locale])}
       related={related} verification={r.verification} osmLink={osmLinkFor(card.coords)}
     />
   );

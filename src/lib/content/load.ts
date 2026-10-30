@@ -94,6 +94,25 @@ export function loadAllContent(): AllContent {
 
   for (const o of offers) {
     if (o.startsAt && o.endsAt && o.endsAt < o.startsAt) throw new Error(`offers "${o.id}": endsAt anterior a startsAt`);
+    if (o.status === "published") {
+      if (!o.endsAt) throw new Error(`offers "${o.id}": una oferta publicada necesita fecha de vencimiento (endsAt)`);
+      if (o.conditions.es.length === 0 || o.conditions.en.length === 0) throw new Error(`offers "${o.id}": una oferta publicada necesita condiciones (es y en)`);
+      if (o.conditions.es.length !== o.conditions.en.length) throw new Error(`offers "${o.id}": conditions es/en deben tener el mismo número de elementos`);
+    }
+  }
+  // Horarios y precios solo se publican si el dato está verificado.
+  for (const [name, list] of [["places", places], ["restaurants", restaurants]] as const) {
+    for (const it of list) {
+      if (it.status === "published" && it.verification.status === "pending" && (it.hours || it.priceNote)) {
+        throw new Error(`${name} "${it.id}": no publiques horarios ni precios sin verificar (cambia verification.status a "verified" con lastVerified, o quita hours/priceNote)`);
+      }
+      if (it.verification.status === "verified" && !it.verification.lastVerified) {
+        throw new Error(`${name} "${it.id}": verification "verified" requiere lastVerified`);
+      }
+    }
+  }
+  for (const a of articles) {
+    if (a.body.es.length !== 0 && a.body.en.length === 0) throw new Error(`articles "${a.id}": falta el cuerpo en inglés`);
   }
   const offerIds = new Set(offers.map((o) => o.id));
   for (const c of coupons) if (!offerIds.has(c.offerId)) throw new Error(`coupons "${c.id}": offerId "${c.offerId}" no existe`);

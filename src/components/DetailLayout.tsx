@@ -20,6 +20,7 @@ export interface DetailProps {
   related: CardItem[];
   verification: { status: "verified" | "pending"; lastVerified: string | null } | null;
   osmLink: string | null;
+  tags?: string[];
 }
 
 /** Plantilla común de ficha (lugar, restaurante, oferta). */
@@ -47,6 +48,11 @@ export function DetailLayout(p: DetailProps) {
             {p.verification?.status === "pending" && <Notice tone="warn">{L.pendingNotice}</Notice>}
           </div>
           <p className="mt-5 text-lg leading-relaxed text-neutral-800">{p.description}</p>
+          {p.tags && p.tags.length > 0 && (
+            <ul aria-label="Tags" className="mt-4 flex flex-wrap gap-2">
+              {p.tags.map((t) => (<li key={t} className="rounded-full bg-sv-gray px-3 py-1 text-xs font-semibold text-neutral-700">#{t}</li>))}
+            </ul>
+          )}
           {p.sections?.map((s) => (
             <section key={s.title} className="mt-8">
               <h2 className="mb-2 font-display text-2xl">{s.title}</h2>

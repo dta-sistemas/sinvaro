@@ -21,7 +21,9 @@ npm run dev                    # http://localhost:3000
 | `npm run dev` | Servidor de desarrollo |
 | `npm run build` | Valida el contenido y compila para producción |
 | `npm start` | Sirve la compilación (`npm run build` primero) |
-| `npm run validate:content` | Valida solo los JSON de `content/` |
+| `npm run validate:content` | Valida los JSON de `content/` (`-- --warnings` muestra avisos) |
+| `npm run content -- <cmd>` | Crea/publica/retira contenido (ver la guía editorial) |
+| `npm run audit` | Audita la web en ejecución: enlaces, SEO, avisos de verificación |
 | `npm run typecheck` | TypeScript sin emitir |
 | `npm test` | Pruebas unitarias (Vitest) |
 
@@ -30,6 +32,8 @@ npm run dev                    # http://localhost:3000
 Español en la raíz (`/gratis`), inglés bajo `/en/` (`/en/free`). Los textos de interfaz están en `src/i18n/dictionaries.ts`; los segmentos de URL en `src/i18n/routes.ts`. `src/middleware.ts` reescribe `/en/free` → carpeta interna `gratis` y redirige `/es/...` a `/...`. El selector de idioma conserva la página actual.
 
 ## Cómo editar el contenido (sin tocar componentes)
+
+> Guía paso a paso: **[docs/CONTENT_GUIDE.md](docs/CONTENT_GUIDE.md)** · Antes de publicar: **[docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md)**
 
 Todo el contenido vive en `content/*.json`. Cada texto visible es bilingüe: `{ "es": "...", "en": "..." }`.
 
