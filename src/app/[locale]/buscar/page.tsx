@@ -24,8 +24,8 @@ export default async function SearchPage({ params, searchParams }: P) {
 
   return (
     <>
-      <PageHero a={t.a} b={t.b} intro={t.intro} color="pink" />
-      <div className="mx-auto max-w-6xl px-4 py-6">
+      <PageHero a={t.a} b={t.b} intro={t.intro} color="pink" icon="Search" />
+      <div className="mx-auto max-w-7xl px-4 py-6">
         <form role="search" action={href(locale, "buscar")} method="get" className="flex max-w-xl gap-2">
           <label htmlFor="q" className="sr-only">{t.button}</label>
           <input id="q" name="q" type="search" defaultValue={q} placeholder={t.placeholder} minLength={2} maxLength={80} className="min-h-12 flex-1 rounded-xl border border-black/20 px-4" />

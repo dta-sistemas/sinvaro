@@ -26,8 +26,8 @@ export default async function SecretPage({ params }: P) {
   ];
   return (
     <>
-      <PageHero a={d.pages.secret.a} b={d.pages.secret.b} intro={d.pages.secret.intro} color="purple" />
-      <div className="mx-auto max-w-6xl space-y-5 px-4 py-6">
+      <PageHero a={d.pages.secret.a} b={d.pages.secret.b} intro={d.pages.secret.intro} color="purple" icon="MapPin" />
+      <div className="mx-auto max-w-7xl space-y-5 px-4 py-6">
         <Notice tone="warn">{d.pages.secret.notice}</Notice>
         <CollectionBrowser items={items} groups={groups} dict={d} />
       </div>

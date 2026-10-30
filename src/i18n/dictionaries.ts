@@ -53,6 +53,8 @@ const es = {
     breakfast: "Desayuno", lunch: "Comida", dinner: "Cena",
     active: "Vigentes", upcoming: "Próximas",
     priceNote: "Los rangos son filtros orientativos, no precios confirmados.",
+    title: "Filtros", searchList: "Buscar en esta lista", searchPlaceholder: "Buscar por nombre o zona…", showResults: "Ver {n} resultados",
+    close: "Cerrar", removeFilter: "Quitar filtro", explore: "Explora por tipo", filterBy: "Filtrar por",
   },
   pages: {
     free: { a: "COSAS", b: "GRATIS", intro: "Disfruta Cancún sin gastar ni un peso.", seoTitle: "Cosas gratis en Cancún", seoDesc: "Playas, parques y actividades gratis en Cancún. Planes para disfrutar sin gastar." },
@@ -134,6 +136,8 @@ const en: Dict = {
     breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner",
     active: "Active", upcoming: "Upcoming",
     priceNote: "Ranges are guidance filters, not confirmed prices.",
+    title: "Filters", searchList: "Search this list", searchPlaceholder: "Search by name or area…", showResults: "Show {n} results",
+    close: "Close", removeFilter: "Remove filter", explore: "Browse by type", filterBy: "Filter by",
   },
   pages: {
     free: { a: "FREE", b: "THINGS", intro: "Enjoy Cancún without spending a peso.", seoTitle: "Free things to do in Cancún", seoDesc: "Free beaches, parks and activities in Cancún. Plans to enjoy without spending." },

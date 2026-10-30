@@ -19,8 +19,8 @@ export default async function BlogPage({ params }: P) {
   const { articles, categories } = await getAllCards(locale);
   return (
     <>
-      <PageHero a={d.pages.blog.a} b={d.pages.blog.b} intro={d.pages.blog.intro} color="pink" />
-      <div className="mx-auto max-w-6xl px-4 py-6">
+      <PageHero a={d.pages.blog.a} b={d.pages.blog.b} intro={d.pages.blog.intro} color="pink" icon="Lightbulb" />
+      <div className="mx-auto max-w-7xl px-4 py-6">
         <CollectionBrowser items={articles} groups={[categoryGroup(categories.filter((c) => c.kind === "article"), d.filters.category, locale)]} dict={d} />
       </div>
     </>

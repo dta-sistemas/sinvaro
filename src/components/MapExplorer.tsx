@@ -89,7 +89,7 @@ export function MapExplorer({ items, dict }: { items: CardItem[]; dict: Dict }) 
           ))}
         </ul>
       </div>
-      <div className="relative order-1 lg:order-2">
+      <div className="relative order-1 lg:sticky lg:top-24 lg:order-2 lg:self-start">
         <div ref={el} role="region" aria-label={t.seoTitle} className="h-[60vh] min-h-80 w-full overflow-hidden rounded-2xl bg-sv-gray ring-1 ring-black/10 lg:h-[34rem]" />
         {ready === "loading" && <p role="status" className="absolute inset-0 flex items-center justify-center text-sm">{t.loading}</p>}
         {ready === "error" && <p role="alert" className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-red-800">{t.error}</p>}

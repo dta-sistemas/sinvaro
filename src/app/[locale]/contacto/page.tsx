@@ -16,8 +16,8 @@ export default async function ContactPage({ params }: P) {
   const d = getDictionary(locale);
   return (
     <>
-      <PageHero a={d.pages.contact.a} b={d.pages.contact.b} intro={d.pages.contact.intro} color="yellow" />
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-6 lg:grid-cols-2">
+      <PageHero a={d.pages.contact.a} b={d.pages.contact.b} intro={d.pages.contact.intro} color="yellow" icon="Coffee" />
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-6 lg:grid-cols-2">
         <ContactForm dict={d} />
         <section id="colaboracion" className="h-fit rounded-2xl bg-sv-gray p-6">
           <h2 className="font-display text-2xl">{d.pages.contact.collab}</h2>

@@ -25,8 +25,8 @@ export default async function EatsPage({ params }: P) {
   ];
   return (
     <>
-      <PageHero a={d.pages.eats.a} b={d.pages.eats.b} intro={d.pages.eats.intro} color="yellow" />
-      <div className="mx-auto max-w-6xl px-4 py-6"><CollectionBrowser items={restaurants} groups={groups} dict={d} note={d.filters.priceNote} /></div>
+      <PageHero a={d.pages.eats.a} b={d.pages.eats.b} intro={d.pages.eats.intro} color="yellow" icon="Utensils" />
+      <div className="mx-auto max-w-7xl px-4 py-6"><CollectionBrowser items={restaurants} groups={groups} dict={d} note={d.filters.priceNote} /></div>
     </>
   );
 }

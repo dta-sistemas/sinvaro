@@ -18,8 +18,8 @@ export default async function FavoritesPage({ params }: P) {
   const all = [...c.places, ...c.restaurants, ...c.offers];
   return (
     <>
-      <PageHero a={d.pages.favorites.a} b={d.pages.favorites.b} intro={d.pages.favorites.intro} color="pink" />
-      <div className="mx-auto max-w-6xl px-4 py-6"><FavoritesClient cards={all} dict={d} /></div>
+      <PageHero a={d.pages.favorites.a} b={d.pages.favorites.b} intro={d.pages.favorites.intro} color="pink" icon="Heart" />
+      <div className="mx-auto max-w-7xl px-4 py-6"><FavoritesClient cards={all} dict={d} /></div>
     </>
   );
 }

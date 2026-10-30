@@ -71,7 +71,8 @@ Cada elemento tiene `verification: { "status": "pending" | "verified", "lastVeri
 ## Categorías y etiquetas
 - `categories.json`: `kind` indica dónde se usa (`place`, `restaurant`, `offer`, `article`); `color` (`pink|yellow|teal|purple`) e `icon` (nombre de un icono ya registrado en `src/components/ui.tsx`, p. ej. `Waves`, `Store`).
 - Para agregar una categoría: nuevo objeto con `id` y `slug` únicos y nombre/descripcion en es y en; luego úsala en `categoryId`.
-- Los filtros de cada página muestran **solo las categorías y opciones que tienen contenido**; una categoría vacía no aparece (los avisos de `--warnings` te la señalan).
+- Los filtros de cada página (barra lateral fija en escritorio, hoja "Filtros" en móvil) muestran **solo las categorías y opciones que tienen contenido**, con el número de resultados de cada una; una categoría vacía no aparece (los avisos de `--warnings` te la señalan).
+- Los filtros se reflejan en la URL y se pueden enlazar: `/gratis?category=playas`, `/comer-barato?category=mercados&q=centro`. Los valores son el `id` de la categoría (y `price`, `meal`, `area`, `status`, `access` donde aplique).
 - `tags.json`: etiquetas libres; se muestran en las fichas y se buscan en el buscador. Referéncialas por `id` en `tagIds`.
 
 ## SEO por elemento

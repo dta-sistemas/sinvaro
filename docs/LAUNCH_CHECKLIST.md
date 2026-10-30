@@ -28,7 +28,7 @@ Marca cada punto. Los marcados 🤖 los comprueba `npm run audit` / `npm test` /
 ## 4. Revisión manual en navegador (no automatizada)
 - [ ] Móvil, tableta y escritorio: inicio, categorías, fichas, blog, mapa, favoritos, contacto.
 - [ ] Menú móvil y barra inferior; navegación con teclado (Tab, foco visible, enlace "Saltar al contenido").
-- [ ] Filtros y "Ver más" en cada categoría; el contador y el botón "Limpiar filtros".
+- [ ] Filtros en cada categoría: barra lateral fija en escritorio, botón "Filtros" (hoja inferior) en móvil, búsqueda dentro de la lista, "Ver más", "Limpiar filtros" y enlaces con `?category=`. (La lógica está cubierta por pruebas automáticas; falta verla en navegador real.)
 - [ ] Favoritos: guardar un lugar y una oferta, recargar, verlos en Guardados, quitarlos.
 - [ ] Mapa: cargan las teselas de OpenStreetMap, los marcadores abren su ficha y el filtro por tipo funciona.
 - [ ] Selector de idioma ES ⇄ EN en varias páginas (conserva la página).

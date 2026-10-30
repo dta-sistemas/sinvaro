@@ -20,8 +20,8 @@ export default async function MapPage({ params }: P) {
   const items = [...c.places, ...c.restaurants, ...c.offers.filter((o) => o.offerStatus !== "expired")];
   return (
     <>
-      <PageHero a={d.pages.map.a} b={d.pages.map.b} intro={d.pages.map.intro} color="teal" />
-      <div className="mx-auto max-w-6xl px-4 py-6">
+      <PageHero a={d.pages.map.a} b={d.pages.map.b} intro={d.pages.map.intro} color="teal" icon="Map" />
+      <div className="mx-auto max-w-7xl px-4 py-6">
         <MapExplorer items={items} dict={d} />
         <p className="mt-3 text-xs text-neutral-600">{d.pages.map.attribution}</p>
       </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin, Palmtree, Ticket, Utensils } from "lucide-react";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { getAllCards } from "@/lib/cards";
@@ -30,6 +30,10 @@ export default async function Home({ params }: P) {
   const tips = loadAllContent().tips;
   const recommended = cards.places.filter((c) => c.filters.access?.includes("free")).slice(0, 4);
   const offers = cards.offers.filter((o) => o.offerStatus === "active").sort((a, b) => b.filters.featured.length - a.filters.featured.length).slice(0, 3);
+  const explore = [
+    ...[...new Map(cards.places.filter((c) => c.filters.access.includes("free")).map((c) => [c.categoryId, c])).values()].map((c) => ({ to: `${href(locale, "gratis")}?category=${c.categoryId}`, label: c.categoryName, icon: c.icon, color: c.color })),
+    ...[...new Map(cards.restaurants.map((c) => [c.categoryId, c])).values()].map((c) => ({ to: `${href(locale, "comer-barato")}?category=${c.categoryId}`, label: c.categoryName, icon: c.icon, color: c.color })),
+  ];
   const hero = site.heroImage as { src: string; alt: { es: string; en: string } } | null;
 
   const tiles = [
@@ -63,19 +67,27 @@ export default async function Home({ params }: P) {
             ) : (
               <div aria-hidden className="h-full w-full bg-[linear-gradient(170deg,#ffe29a_0%,#ff9db9_35%,#16b8b3_70%,#0b7f7b_100%)]">
                 <div className="absolute left-[18%] top-[16%] h-24 w-24 rounded-full bg-white/70 sm:h-32 sm:w-32" />
+                <div className="absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-sv-yellow/60" />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,.5),transparent_60%)]" />
               </div>
             )}
+            <div aria-hidden className="pointer-events-none">
+              <span className="absolute left-3 top-4 flex h-14 w-14 -rotate-12 items-center justify-center rounded-full bg-sv-pink text-white shadow-lg"><Palmtree className="h-7 w-7" /></span>
+              <span className="absolute right-4 top-10 flex h-14 w-14 rotate-12 items-center justify-center rounded-full bg-sv-yellow shadow-lg"><Utensils className="h-7 w-7" /></span>
+              <span className="absolute bottom-6 right-6 flex h-14 w-14 -rotate-6 items-center justify-center rounded-full bg-sv-purple text-white shadow-lg"><Ticket className="h-7 w-7" /></span>
+              <span className="absolute bottom-8 left-8 flex h-12 w-12 rotate-6 items-center justify-center rounded-full bg-white text-sv-black shadow-lg"><MapPin className="h-6 w-6" /></span>
+            </div>
           </div>
         </div>
+        <svg aria-hidden viewBox="0 0 1440 40" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-8 w-full text-white"><path fill="currentColor" d="M0 40V18c140 18 280 22 420 10S700 0 860 6s300 24 580 8v26z" /></svg>
       </section>
 
       <section aria-label="Categorías" className="relative z-10 mx-auto -mt-16 max-w-7xl px-4 md:-mt-20">
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {tiles.map(({ to, t, color, icon }) => (
             <li key={to}>
-              <Link href={to} className="flex h-full flex-col gap-2 rounded-2xl bg-white p-4 shadow-lg ring-1 ring-black/10 transition hover:-translate-y-0.5">
-                <span className={`flex h-12 w-12 items-center justify-center rounded-full ${COLOR[color].bg}`}><Icon name={icon} className="h-6 w-6" /></span>
+              <Link href={to} className="group flex h-full flex-col gap-2 rounded-2xl bg-white p-4 shadow-lg ring-1 ring-black/10 transition hover:-translate-y-1 hover:shadow-xl">
+                <span className={`flex h-12 w-12 items-center justify-center rounded-full transition group-hover:rotate-12 group-hover:scale-110 ${COLOR[color].bg}`}><Icon name={icon} className="h-6 w-6" /></span>
                 <span className="font-display text-lg leading-none"><span className="block">{t.a}</span><span className={`block ${COLOR[color].text}`}>{t.b}</span></span>
                 <span className="text-xs text-neutral-700">{t.desc}</span>
                 <span className="mt-auto inline-flex items-center gap-1 text-xs font-extrabold uppercase">{t.cta}<ArrowRight aria-hidden className="h-3.5 w-3.5" /></span>
@@ -85,7 +97,22 @@ export default async function Home({ params }: P) {
         </ul>
       </section>
 
-      <div className="mx-auto mt-14 grid max-w-7xl gap-12 px-4 lg:grid-cols-[2fr_1fr]">
+      {explore.length > 0 && (
+        <nav aria-label={d.filters.explore} className="mx-auto mt-10 max-w-7xl px-4">
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-widest text-neutral-600">{d.filters.explore}</p>
+          <ul className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+            {explore.map((e) => (
+              <li key={e.to} className="shrink-0">
+                <Link href={e.to} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 text-sm font-bold ring-1 ring-black/15 transition hover:-translate-y-0.5 hover:bg-sv-yellow">
+                  <span className={`flex h-7 w-7 items-center justify-center rounded-full ${COLOR[e.color].bg}`}><Icon name={e.icon} className="h-4 w-4" /></span>{e.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <div className="mx-auto mt-12 grid max-w-7xl gap-12 px-4 lg:grid-cols-[2fr_1fr]">
         <section aria-labelledby="rec">
           <div id="rec"><SectionHeading title={d.sections.recommended} href={href(locale, "gratis")} linkLabel={d.sections.viewAll} /></div>
           {recommended.length ? (

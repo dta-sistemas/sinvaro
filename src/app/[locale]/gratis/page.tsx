@@ -21,8 +21,8 @@ export default async function FreePage({ params }: P) {
   const groups = [categoryGroup(categories.filter((c) => c.kind === "place"), d.filters.category, locale), areaGroup(items, d.filters.area)];
   return (
     <>
-      <PageHero a={d.pages.free.a} b={d.pages.free.b} intro={d.pages.free.intro} color="pink" />
-      <div className="mx-auto max-w-6xl px-4 py-6"><CollectionBrowser items={items} groups={groups} dict={d} /></div>
+      <PageHero a={d.pages.free.a} b={d.pages.free.b} intro={d.pages.free.intro} color="pink" icon="Palmtree" />
+      <div className="mx-auto max-w-7xl px-4 py-6"><CollectionBrowser items={items} groups={groups} dict={d} /></div>
     </>
   );
 }

@@ -3,13 +3,9 @@ import { loadAllContent } from "@/lib/content/load";
 import { getOfferStatus } from "@/lib/offers";
 import type { ContentRepository } from "./types";
 
-const norm = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+import { matchesQuery } from "@/lib/text";
 
-/** Búsqueda simple: todas las palabras de la consulta deben aparecer (sin acentos). */
-export function matchesQuery(haystack: string, query: string): boolean {
-  const h = norm(haystack);
-  return norm(query).split(/\s+/).filter(Boolean).every((w) => h.includes(w));
-}
+export { matchesQuery };
 
 const published = <T extends { status: string }>(items: T[]) => items.filter((i) => i.status === "published");
 

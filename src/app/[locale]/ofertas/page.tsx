@@ -29,8 +29,8 @@ export default async function OffersPage({ params }: P) {
   ];
   return (
     <>
-      <PageHero a={d.pages.offers.a} b={d.pages.offers.b} intro={d.pages.offers.intro} color="purple" />
-      <div className="mx-auto max-w-6xl px-4 py-6">
+      <PageHero a={d.pages.offers.a} b={d.pages.offers.b} intro={d.pages.offers.intro} color="purple" icon="Ticket" />
+      <div className="mx-auto max-w-7xl px-4 py-6">
         <CollectionBrowser items={current} groups={groups} dict={d} emptyKind="offers" />
         {expired.length > 0 && (
           <section className="mt-14" aria-labelledby="expired">

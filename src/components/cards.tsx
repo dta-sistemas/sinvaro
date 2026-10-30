@@ -17,9 +17,9 @@ export function FavoriteButton({ item, labels, className = "" }: { item: Pick<Ca
       aria-pressed={saved}
       aria-label={`${saved ? labels.unsave : labels.save}: ${item.title}`}
       onClick={() => toggle(item.key)}
-      className={`relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/95 shadow ring-1 ring-black/10 transition hover:scale-105 ${className}`}
+      className={`relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/95 shadow ring-1 ring-black/10 transition hover:scale-110 active:scale-90 ${className}`}
     >
-      <Heart aria-hidden className={`h-5 w-5 ${saved ? "fill-sv-pink text-sv-pink" : "text-sv-black"}`} />
+      <Heart aria-hidden className={`h-5 w-5 transition ${saved ? "scale-110 fill-sv-pink text-sv-pink" : "text-sv-black"}`} />
     </button>
   );
 }
@@ -27,12 +27,16 @@ export function FavoriteButton({ item, labels, className = "" }: { item: Pick<Ca
 /** Foto real si existe; si no, un recurso visual de marca claramente temporal. */
 export function CardImage({ item, labels, sizes, showLabel = false }: { item: CardItem; labels: Dict["labels"]; sizes: string; showLabel?: boolean }) {
   if (item.photo) {
-    return <Image src={item.photo.src} alt={item.photo.alt} fill sizes={sizes} className="object-cover" />;
+    return <Image src={item.photo.src} alt={item.photo.alt} fill sizes={sizes} className="object-cover transition duration-500 group-hover:scale-105" />;
   }
   const c = COLOR[item.color];
   return (
-    <div role="img" aria-label={item.title} className={`flex h-full w-full items-center justify-center ${c.soft} bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,.8),transparent_60%)]`}>
-      <Icon name={item.icon} className={`h-1/3 w-1/3 max-h-16 max-w-16 opacity-70 ${c.text}`} />
+    <div role="img" aria-label={item.title} style={{ backgroundImage: "radial-gradient(rgba(17,17,17,.07) 1.5px, transparent 1.5px)", backgroundSize: "14px 14px" }}
+      className={`relative flex h-full w-full items-center justify-center overflow-hidden ${c.soft}`}>
+      <span aria-hidden className={`absolute -right-6 -top-6 h-28 w-28 rounded-full opacity-25 ${c.bg.split(" ")[0]}`} />
+      <span className="flex h-20 w-20 rotate-3 items-center justify-center rounded-3xl bg-white shadow-md transition duration-300 group-hover:-rotate-3 group-hover:scale-105">
+        <Icon name={item.icon} className={`h-10 w-10 ${c.text}`} />
+      </span>
       {showLabel && <span className="absolute bottom-2 left-2 rounded bg-black/60 px-1.5 py-0.5 text-[0.65rem] text-white">{labels.photoPlaceholder}</span>}
     </div>
   );
@@ -53,7 +57,7 @@ export function ItemCard({ item, labels, variant = "grid" }: { item: CardItem; l
   const expired = item.offerStatus === "expired";
   const row = variant === "row";
   return (
-    <article className={`group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/10 transition hover:shadow-md ${row ? "flex" : "flex flex-col"} ${expired ? "opacity-70" : ""}`}>
+    <article className={`group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/10 transition duration-200 hover:-translate-y-1 hover:shadow-lg ${row ? "flex" : "flex flex-col"} ${expired ? "opacity-70" : ""}`}>
       <div className={`relative shrink-0 overflow-hidden ${row ? "w-28 sm:w-40" : "aspect-[4/3] w-full"}`}>
         <CardImage item={item} labels={labels} sizes={row ? "160px" : "(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"} />
         {item.badge && !row && <Badge color={item.badge.color} className="absolute left-3 top-3">{item.badge.label}</Badge>}
@@ -74,7 +78,9 @@ export function ItemCard({ item, labels, variant = "grid" }: { item: CardItem; l
           </p>
         )}
       </div>
-      {item.type !== "article" && <FavoriteButton item={item} labels={labels} className="absolute right-3 top-3" />}
+      {item.type !== "article" && (
+        <div className="absolute right-3 top-3 z-10"><FavoriteButton item={item} labels={labels} /></div>
+      )}
     </article>
   );
 }

@@ -25,19 +25,42 @@ export function Badge({ color, children, className = "" }: { color: Category["co
   );
 }
 
-/** Título de página en dos líneas: negro + color (estilo marca). */
-export function PageHero({ a, b, intro, color = "pink", children }: { a: string; b: string; intro: string; color?: Category["color"]; children?: React.ReactNode }) {
+const HERO: Record<Category["color"], { bg: string; blob: string; bar: string; accent: string }> = {
+  pink: { bg: "from-[#ffe1ec] via-[#fff0f5]", blob: "bg-sv-pink", bar: "bg-sv-pink", accent: "bg-sv-yellow" },
+  yellow: { bg: "from-[#fff3b8] via-[#fffbe6]", blob: "bg-sv-yellow", bar: "bg-sv-yellow", accent: "bg-sv-pink" },
+  teal: { bg: "from-[#c9f3f1] via-[#eafaf9]", blob: "bg-sv-teal", bar: "bg-sv-teal", accent: "bg-sv-yellow" },
+  purple: { bg: "from-[#e6dafc] via-[#f5f0ff]", blob: "bg-sv-purple", bar: "bg-sv-purple", accent: "bg-sv-yellow" },
+};
+
+/** Título de página en dos líneas (negro + color de marca) con ilustración decorativa hecha en CSS. */
+export function PageHero({ a, b, intro, color = "pink", icon, children }: { a: string; b: string; intro: string; color?: Category["color"]; icon?: string; children?: React.ReactNode }) {
+  const h = HERO[color];
   return (
-    <header className="bg-[linear-gradient(180deg,#fff5f8_0%,#fff_100%)]">
-      <div className="mx-auto max-w-6xl px-4 pb-6 pt-8 sm:pt-12">
-        <h1 className="font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl">
-          <span className="block text-sv-black">{a}</span>
-          <span className={`block -rotate-1 ${COLOR[color].text}`}>{b}</span>
-        </h1>
-        <span aria-hidden className={`mt-3 block h-1.5 w-28 rounded-full ${color === "yellow" ? "bg-sv-yellow" : color === "teal" ? "bg-sv-teal" : color === "purple" ? "bg-sv-purple" : "bg-sv-pink"}`} />
-        <p className="mt-4 max-w-xl text-base text-neutral-700 sm:text-lg">{intro}</p>
-        {children}
+    <header className={`relative overflow-hidden bg-gradient-to-b ${h.bg} to-white`}>
+      <span aria-hidden className={`absolute -right-16 -top-20 h-72 w-72 rounded-full opacity-20 ${h.blob}`} />
+      <span aria-hidden className={`absolute -bottom-10 left-[38%] h-24 w-24 rounded-full opacity-30 ${h.accent}`} />
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 pb-10 pt-8 sm:pt-12">
+        <div className="min-w-0">
+          <h1 className="font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl">
+            <span className="block text-sv-black">{a}</span>
+            <span className={`block -rotate-1 ${COLOR[color].text}`}>{b}</span>
+          </h1>
+          <span aria-hidden className={`mt-3 block h-1.5 w-28 -rotate-1 rounded-full ${h.bar}`} />
+          <p className="mt-4 max-w-xl text-base text-neutral-800 sm:text-lg">{intro}</p>
+          {children}
+        </div>
+        {icon && (
+          <div aria-hidden className="relative hidden h-44 w-44 shrink-0 sm:block md:h-52 md:w-52">
+            <span className={`absolute inset-4 -rotate-12 rounded-[2.5rem] ${h.accent}`} />
+            <span className={`absolute inset-0 flex rotate-6 items-center justify-center rounded-[2.5rem] shadow-xl ${COLOR[color].bg}`}>
+              <Icon name={icon} className="h-20 w-20 md:h-24 md:w-24" />
+            </span>
+            <span className="absolute -left-3 top-6 h-5 w-5 rounded-full bg-sv-black" />
+            <span className={`absolute -right-2 bottom-8 h-4 w-4 rounded-full ${h.blob}`} />
+          </div>
+        )}
       </div>
+      <svg aria-hidden viewBox="0 0 1440 30" preserveAspectRatio="none" className="block h-5 w-full text-white"><path fill="currentColor" d="M0 30V12c120 14 240 18 360 8s240-18 360-12 240 16 360 14 240-10 360-16v24z" /></svg>
     </header>
   );
 }
