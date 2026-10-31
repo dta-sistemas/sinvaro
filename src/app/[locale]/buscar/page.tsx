@@ -28,7 +28,7 @@ export default async function SearchPage({ params, searchParams }: P) {
       <div className="mx-auto max-w-7xl px-4 py-6">
         <form role="search" action={href(locale, "buscar")} method="get" className="flex max-w-xl gap-2">
           <label htmlFor="q" className="sr-only">{t.button}</label>
-          <input id="q" name="q" type="search" defaultValue={q} placeholder={t.placeholder} minLength={2} maxLength={80} className="min-h-12 flex-1 rounded-xl border border-black/20 px-4" />
+          <input id="q" name="q" type="search" defaultValue={q} placeholder={t.placeholder} minLength={2} maxLength={80} className="min-h-12 w-full min-w-0 flex-1 rounded-xl border border-black/20 px-4" />
           <button type="submit" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-sv-yellow px-5 text-sm font-extrabold uppercase"><Search aria-hidden className="h-4 w-4" />{t.button}</button>
         </form>
         <div className="mt-8" aria-live="polite">

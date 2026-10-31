@@ -1,16 +1,17 @@
 import { notFound } from "next/navigation";
 import { LOCALES } from "@/content/schemas";
-import { DetailLayout, osmLinkFor } from "@/components/DetailLayout";
+import { DetailLayout } from "@/components/DetailLayout";
+import { RoutesNearby } from "@/components/RoutesNearby";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { getAllCards, restaurantToCard } from "@/lib/cards";
-import { formatPrice } from "@/lib/price";
-import { getLocale } from "@/lib/locale";
-import { getContent } from "@/lib/repositories";
-import { buildMetadata } from "@/lib/site";
-import { RoutesNearby } from "@/components/RoutesNearby";
 import { NEARBY_RADIUS_M } from "@/lib/config";
 import { routesNearPoint } from "@/lib/geo";
+import { getLocale } from "@/lib/locale";
+import { formatPrice } from "@/lib/price";
+import { pickRelatedArticle } from "@/lib/related";
+import { getContent } from "@/lib/repositories";
+import { buildMetadata } from "@/lib/site";
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
@@ -33,27 +34,48 @@ export default async function RestaurantPage({ params }: P) {
   const r = await repo.restaurants.getBySlug((await params).slug);
   if (!r) notFound();
   const d = getDictionary(locale);
-  const tagNames = await repo.tags.list();
   const L = d.labels;
-  const card = restaurantToCard(r, (await repo.categories.getById(r.categoryId))!, locale, d);
-  const nearRoutes = card.coords ? routesNearPoint(await repo.routes.list(), [card.coords.lat, card.coords.lng], NEARBY_RADIUS_M) : [];
-  const related = (await getAllCards(locale)).restaurants.filter((c) => c.id !== r.id).slice(0, 3);
+  const cat = (await repo.categories.getById(r.categoryId))!;
+  const card = restaurantToCard(r, cat, locale, d);
+  const [all, tagList, articles, routes] = await Promise.all([getAllCards(locale), repo.tags.list(), repo.articles.list(), repo.routes.list()]);
+  const related = all.restaurants.filter((c) => c.id !== r.id).slice(0, 3);
+  const nearRoutes = card.coords ? routesNearPoint(routes, [card.coords.lat, card.coords.lng], NEARBY_RADIUS_M) : [];
+  const art = pickRelatedArticle(r, articles);
+  const area = r.location.area[locale];
   const meals = r.mealTypes.map((m) => d.filters[m]).join(", ");
+  const price = [r.priceMxn !== null ? formatPrice(r.priceMxn, { free: L.free, from: L.from }) : r.priceBand === "unknown" ? L.noPrice : d.filters[r.priceBand], r.priceNote?.[locale]].filter(Boolean).join(" — ");
+
   return (
     <DetailLayout
       locale={locale} dict={d} card={card}
       crumbs={[{ label: L.home, href: href(locale, null) }, { label: d.nav.cheapEats, href: href(locale, "comer-barato") }, { label: card.title }]}
+      hero={{
+        photo: card.photo,
+        chips: [
+          ...(card.badge ? [{ label: card.badge.label, color: "yellow" as const, icon: "CircleDollarSign" }] : []),
+          { label: area, color: "teal", icon: "MapPin" },
+          { label: cat.name[locale], color: "purple", icon: cat.icon },
+          ...(card.pending ? [{ label: L.pending, color: "yellow" as const, icon: "Info" }] : []),
+        ],
+      }}
       description={r.description[locale]}
+      tags={tagList.filter((t) => r.tagIds.includes(t.id)).map((t) => t.name[locale])}
       rows={[
-        { label: L.location, value: [r.location.area[locale], r.location.address].filter(Boolean).join(" · ") },
-        { label: L.price, value: [r.priceMxn !== null ? formatPrice(r.priceMxn, { free: L.free, from: L.from }) : r.priceBand === "unknown" ? L.noPrice : d.filters[r.priceBand], r.priceNote?.[locale]].filter(Boolean).join(" — ") },
-        ...(meals ? [{ label: d.filters.meal, value: meals }] : []),
-        ...(r.hours ? [{ label: L.hours, value: r.hours[locale] }] : []),
+        { icon: "Tag", label: d.detail.type, value: cat.name[locale] },
+        { icon: "CircleDollarSign", label: L.price, value: price },
+        ...(meals ? [{ icon: "Utensils", label: d.filters.meal, value: meals }] : []),
+        ...(r.hours ? [{ icon: "Clock", label: L.hours, value: r.hours[locale] }] : []),
+        { icon: "MapPin", label: L.location, value: area },
       ]}
-      sections={r.tips[locale].length ? [{ title: L.tips, items: r.tips[locale] }] : []}
-      extra={<>{r.externalUrl ? <p className="mt-8"><a href={r.externalUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline">{r.externalUrl}</a></p> : null}<RoutesNearby routes={nearRoutes} locale={locale} dict={d} radius={NEARBY_RADIUS_M} /></>}
-      tags={tagNames.filter((t) => r.tagIds.includes(t.id)).map((t) => t.name[locale])}
-      related={related} verification={r.verification} osmLink={osmLinkFor(card.coords)}
+      verification={r.verification}
+      gallery={r.photos.map((p) => ({ src: p.src, alt: p.alt[locale], credit: p.credit }))}
+      location={{ area, address: r.location.address }}
+      reach={<RoutesNearby routes={nearRoutes} locale={locale} dict={d} radius={NEARBY_RADIUS_M} />}
+      extra={r.externalUrl ? <p><a href={r.externalUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline">{r.externalUrl}</a></p> : null}
+      tips={r.tips[locale]}
+      related={related}
+      readAlso={art ? { title: art.title[locale], excerpt: art.excerpt[locale], href: href(locale, "blog", art.slug) } : null}
+      showSuggest
     />
   );
 }

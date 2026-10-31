@@ -1,5 +1,5 @@
 "use client";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import type { Locale } from "@/content/schemas";
 import type { Dict } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
@@ -48,10 +48,10 @@ export function NewsletterForm({ locale, dict, compact = false }: { locale: Loca
         {f.a} <span className={compact ? "text-sv-yellow" : "text-sv-pink"}>{f.b}</span>
       </h2>
       <p className={`mt-2 text-sm ${compact ? "text-neutral-300" : "text-sv-black"}`}>{f.text}</p>
-      <form onSubmit={onSubmit} noValidate className="mt-4 flex flex-col gap-2 sm:flex-row">
+      <form onSubmit={onSubmit} noValidate className={`mt-4 flex flex-col gap-2 ${compact ? "" : "sm:flex-row"}`}>
         <label htmlFor={id} className="sr-only">{f.label}</label>
         <input id={id} name="email" type="email" required autoComplete="email" placeholder={f.placeholder}
-          className="min-h-12 flex-1 rounded-xl border border-black/15 bg-white px-4 text-sm text-sv-black placeholder:text-neutral-500" />
+          className="min-h-12 w-full min-w-0 flex-1 rounded-xl border border-black/15 bg-white px-4 text-sm text-sv-black placeholder:text-neutral-500" />
         <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
         <button type="submit" disabled={status === "sending"}
           className={`min-h-12 rounded-xl px-5 text-sm font-extrabold uppercase disabled:opacity-60 ${compact ? "bg-sv-pink text-white" : "bg-sv-black text-white"}`}>
@@ -71,6 +71,12 @@ export function ContactForm({ dict }: { dict: Dict }) {
   const uid = useId();
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [topic, setTopic] = useState("general");
+  // ?topic=recommendation | collaboration preselecciona el tema (enlaces desde fichas y pie de página)
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("topic");
+    if (t === "collaboration" || t === "recommendation") setTopic(t);
+  }, []);
   const messages = { ok: f.success, invalid: f.invalid, error: f.error, not_configured: f.notConfigured, rate_limited: f.rate };
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -105,9 +111,10 @@ export function ContactForm({ dict }: { dict: Dict }) {
       ))}
       <div>
         <label htmlFor={`${uid}-topic`} className="text-sm font-bold">{f.topic}</label>
-        <select id={`${uid}-topic`} name="topic" className={field} defaultValue="general">
+        <select id={`${uid}-topic`} name="topic" className={field} value={topic} onChange={(e) => setTopic(e.target.value)}>
           <option value="general">{f.topicGeneral}</option>
           <option value="collaboration">{f.topicCollab}</option>
+          <option value="recommendation">{f.topicRecommend}</option>
         </select>
       </div>
       <div>

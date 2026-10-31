@@ -2,7 +2,7 @@
   "name": "sinvaro",
   "version": "0.1.0",
   "private": true,
-  "description": "Sin Varo Canc\u00fan \u2014 gu\u00eda de planes gratis, comida barata y ofertas en Canc\u00fan",
+  "description": "Sin Varo Cancún — guía de planes gratis, comida barata y ofertas en Cancún",
   "scripts": {
     "dev": "next dev",
     "build": "npm run validate:content && next build",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
     "@fontsource/bangers": "^5.3.0",
+    "@fontsource/caveat": "^5.3.0",
     "@fontsource/luckiest-guy": "^5.3.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.64.0",

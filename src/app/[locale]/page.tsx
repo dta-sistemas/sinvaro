@@ -112,7 +112,7 @@ export default async function Home({ params }: P) {
         </nav>
       )}
 
-      <div className="mx-auto mt-12 grid max-w-7xl gap-12 px-4 lg:grid-cols-[2fr_1fr]">
+      <div className="mx-auto mt-12 grid max-w-7xl gap-12 px-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <section aria-labelledby="rec">
           <div id="rec"><SectionHeading title={d.sections.recommended} href={href(locale, "gratis")} linkLabel={d.sections.viewAll} /></div>
           {recommended.length ? (

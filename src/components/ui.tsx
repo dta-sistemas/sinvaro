@@ -1,15 +1,13 @@
 import Link from "next/link";
 import {
-  ArrowRight, Bus, Clock, Coffee, Egg, Eye, Heart, Home, Info, Landmark, Leaf, Lightbulb, MapPin, Map as MapIcon,
-  PiggyBank, Percent, Search, Ship, Sandwich, Soup, Sparkles, Store, Ticket, Trees, Utensils, Wallet, Waves, Wine,
-  TreePalm, type LucideIcon,
+  Waves, Trees, Landmark, Leaf, Sparkles, Eye, Store, Utensils, Sandwich, Soup, Egg, Coffee, Ticket, Percent, Wine, Ship, Lightbulb, PiggyBank, Bus, Clock, Wallet, MapPin, Heart, Home, Search, Info, Tag, CircleDollarSign, Accessibility, CalendarCheck, Building2, Gift, Send, Images, Check, Navigation, ExternalLink, Camera, Sunrise, Sun, Umbrella, Binoculars, Music, Fish, Bike, Footprints, ShieldCheck, ArrowRight, Map as MapIcon, TreePalm,
+  type LucideIcon,
 } from "lucide-react";
 import type { Category } from "@/content/schemas";
 import { COLOR } from "@/lib/colors";
 
-const ICONS: Record<string, LucideIcon> = {
-  Waves, Trees, Landmark, Leaf, Sparkles, Eye, Store, Utensils, Sandwich, Soup, Egg, Coffee, Ticket, Percent, Wine, Ship,
-  Lightbulb, Map: MapIcon, PiggyBank, Bus, Clock, Wallet, Palmtree: TreePalm, MapPin, Heart, Home, Search, Info,
+export const ICONS: Record<string, LucideIcon> = {
+  Waves, Trees, Landmark, Leaf, Sparkles, Eye, Store, Utensils, Sandwich, Soup, Egg, Coffee, Ticket, Percent, Wine, Ship, Lightbulb, PiggyBank, Bus, Clock, Wallet, MapPin, Heart, Home, Search, Info, Tag, CircleDollarSign, Accessibility, CalendarCheck, Building2, Gift, Send, Images, Check, Navigation, ExternalLink, Camera, Sunrise, Sun, Umbrella, Binoculars, Music, Fish, Bike, Footprints, ShieldCheck, ArrowRight, Map: MapIcon, Palmtree: TreePalm,
 };
 
 export function Icon({ name, className = "h-5 w-5" }: { name: string; className?: string }) {

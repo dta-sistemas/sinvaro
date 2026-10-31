@@ -80,7 +80,7 @@ export default async function RoutePage({ params }: P) {
           {route.verification.status === "pending" && <Notice tone="warn">{L.pendingNotice}</Notice>}
         </div>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr] lg:items-start">
+        <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:items-start">
           <div className="min-w-0 lg:sticky lg:top-24">
             <RouteMap data={mapData} labels={{
               map: t.mapLabel, direction: t.direction, showNearby: t.showNearby, legendRoute: t.legendRoute, legendStop: t.legendStop, legendPlace: t.legendPlace,

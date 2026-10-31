@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { bandForPrice } from "@/lib/price";
 import { checkRoute } from "@/lib/routes";
+import { ICON_NAMES } from "@/content/icons";
 import {
   articleSchema, categorySchema, couponSchema, legalSchema, offerSchema, placeSchema,
   restaurantSchema, routeSchema, tagSchema, tipSchema,
@@ -121,6 +122,15 @@ export function loadAllContent(): AllContent {
       if (it.verification.status === "verified" && !it.verification.lastVerified) {
         throw new Error(`${name} "${it.id}": verification "verified" requiere lastVerified`);
       }
+    }
+  }
+  const icons = new Set<string>(ICON_NAMES);
+  for (const c of categories) if (!icons.has(c.icon)) throw new Error(`categories "${c.id}": icono "${c.icon}" no existe (ver src/content/icons.ts)`);
+  for (const t of tips) if (!icons.has(t.icon)) throw new Error(`tips "${t.id}": icono "${t.icon}" no existe (ver src/content/icons.ts)`);
+  for (const p of places) {
+    for (const a of p.activities) if (!icons.has(a.icon)) throw new Error(`places "${p.id}": icono "${a.icon}" no existe (ver src/content/icons.ts)`);
+    if (p.status === "published" && p.verification.status === "pending" && p.accessibility) {
+      throw new Error(`places "${p.id}": no publiques "accessibility" sin verificar (verifícalo o quítalo)`);
     }
   }
   for (const r of restaurants) {

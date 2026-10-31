@@ -37,6 +37,10 @@ Marca cada punto. Los marcados 🤖 los comprueba `npm run audit` / `npm test` /
 - [ ] Búsqueda: con y sin resultados, con acentos ("cancun" encuentra "Cancún").
 - [ ] Compartir un enlace (WhatsApp/Facebook) y revisar la vista previa.
 
+## 4b. Ya verificado en un navegador (Chromium) durante el desarrollo
+- Fichas de lugar, restaurante y oferta en escritorio y móvil; galería y visor (flechas y Esc); pestañas y resaltado al hacer scroll; ruta con mapa, sentidos y lugares cercanos.
+- Sin desbordes horizontales en 14 páginas y anchos de 360 a 1440 px. Lo que **no** se pudo ver: las teselas reales del mapa (el entorno bloquea OpenStreetMap) ni fotos reales.
+
 ## 5. SEO tras publicar
 - [ ] `/sitemap.xml` y `/robots.txt` accesibles en el dominio final.
 - [ ] Dar de alta el sitio y el sitemap en Google Search Console.

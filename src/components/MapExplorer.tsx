@@ -69,7 +69,7 @@ export function MapExplorer({ items, dict }: { items: CardItem[]; dict: Dict }) 
   }, [ready, located, dict.labels]);
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[320px_minmax(0,1fr)]">
       <div className="order-2 lg:order-1">
         <div role="group" aria-label={dict.filters.category} className="mb-3 flex flex-wrap gap-2">
           <Chip active={!kind} onClick={() => setKind(undefined)}>{dict.filters.all}</Chip>

@@ -37,7 +37,7 @@ export function Footer({ locale, dict, showRoutes }: { locale: Locale; dict: Dic
             <li><Link href={href(locale, "terminos")} className="hover:underline">{dict.footer.terms}</Link></li>
             <li><Link href={href(locale, "privacidad")} className="hover:underline">{dict.footer.privacy}</Link></li>
             <li><Link href={href(locale, "contacto")} className="hover:underline">{dict.footer.contact}</Link></li>
-            <li><Link href={`${href(locale, "contacto")}#colaboracion`} className="hover:underline">{dict.footer.collab}</Link></li>
+            <li><Link href={`${href(locale, "contacto")}?topic=collaboration#colaboracion`} className="hover:underline">{dict.footer.collab}</Link></li>
           </ul>
         </nav>
         <div>

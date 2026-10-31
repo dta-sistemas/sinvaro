@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 const body = z.object({
   name: z.string().trim().min(1).max(100),
   email: z.string().trim().max(254).pipe(z.email()),
-  topic: z.enum(["general", "collaboration"]),
+  topic: z.enum(["general", "collaboration", "recommendation"]),
   message: z.string().trim().min(10).max(4000),
   website: z.string().optional(),
 });
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   const { name, email, topic, message, website } = parsed.data;
   if (website) return json("ok", 200);
   if (!checkConfig("contact").ok) return json("not_configured", 503);
-  const subject = `[Sin Varo] ${topic === "collaboration" ? "Colaboración comercial" : "Contacto"} — ${name.replace(/[\r\n]+/g, " ")}`;
+  const subject = `[Sin Varo] ${topic === "collaboration" ? "Colaboración comercial" : topic === "recommendation" ? "Recomendación de lugar" : "Contacto"} — ${name.replace(/[\r\n]+/g, " ")}`;
   try {
     const ok = await sendEmail({ subject, replyTo: email, text: `De: ${name} <${email}>\nTema: ${topic}\n\n${message}` });
     return ok ? json("ok", 200) : json("provider_error", 502);

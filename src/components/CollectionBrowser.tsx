@@ -96,7 +96,7 @@ export function CollectionBrowser({ items, groups: allGroups, dict, pageSize = 1
   }
 
   return (
-    <div className={groups.length ? "grid gap-6 lg:grid-cols-[280px_1fr] lg:items-start" : ""}>
+    <div className={groups.length ? "grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start" : ""}>
       {groups.length > 0 && (
         <aside aria-label={f.title} className="hidden lg:sticky lg:top-24 lg:block lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto rounded-2xl bg-white p-4 ring-1 ring-black/10">
           <h2 className="mb-4 flex items-center gap-2 font-display text-xl"><SlidersHorizontal aria-hidden className="h-5 w-5" />{f.title}</h2>

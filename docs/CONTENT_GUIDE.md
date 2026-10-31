@@ -35,6 +35,14 @@ Tipos: `place` (lugares), `restaurant` (comer barato), `offer` (ofertas), `artic
 - `location.coordinates`: `{ "lat": 21.1, "lng": -86.8, "precision": "exact" | "approximate" }` o `null`. Con `null` el lugar no sale en el mapa. No publiques coordenadas privadas ni de propiedades sin acceso público.
 - `hours` y `priceNote` son opcionales y **solo** se permiten si el lugar está verificado (ver más abajo).
 
+### Cómo se ve una ficha (lugar, restaurante, oferta)
+Encabezado grande con la **primera foto** (sin foto: fondo de marca con el color e icono de la categoría), título, resumen y chips; pestañas fijas (Información, Galería, Cómo llegar, Consejos, Relacionados) y, a la derecha, "Información general", "Tips Sin Varo", "Lugares relacionados" y la invitación a recomendar un lugar. Cada bloque **solo aparece si hay datos**:
+- **Galería:** todas las fotos de `photos` (la primera es la grande; las siguientes, miniaturas; "Ver galería completa" abre un visor con flechas del teclado).
+- **Mapa y Ubicación:** requiere `location.coordinates`; incluye botones a Google Maps y OpenStreetMap, `howToGet` y las rutas de autobús cercanas.
+- **Consejos:** `tips`. **Lee también:** el artículo con más etiquetas en común (por eso conviene etiquetar lugares y artículos igual).
+- **Solo lugares (opcionales):** `tagline` (frase manuscrita del encabezado), `activities` («Qué hacer aquí»: `[{ "icon": "Camera", "title": {es,en} }]`, iconos permitidos en `src/content/icons.ts`) y `accessibility` (solo si el lugar está verificado).
+- "Recomendar un lugar" lleva al formulario de contacto con el tema preseleccionado.
+
 ### Restaurantes (`restaurants.json`)
 - `categoryId` con `kind: "restaurant"`; `mealTypes`: `breakfast`, `lunch`, `dinner`.
 - **Precio** (número o gratis): mientras no lo hayas comprobado deja `"priceBand": "unknown"` y `"priceMxn": null`. Cuando lo verifiques (`verification.status: "verified"` con fecha) pon el precio de referencia en `priceMxn` (un número en MXN, o `0` si es gratis) y el `priceBand` que le corresponde: `free` (0), `under50` (<50), `under100` (<100), `under150` (<150) u `over150` (150 o más). La validación te dice qué rango corresponde si no coincide. En la tarjeta y la ficha se muestra "Desde $70 MXN" o "Gratis".

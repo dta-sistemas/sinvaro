@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource/luckiest-guy/400.css";
 import "@fontsource/bangers/400.css";
+import "@fontsource/caveat/600.css";
 import "@fontsource-variable/inter";
 import "../globals.css";
 import { LOCALES } from "@/content/schemas";

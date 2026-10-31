@@ -74,6 +74,12 @@ export const placeSchema = z.object({
   hours: localizedText.optional(),
   howToGet: localizedText.optional(),
   tips: localizedList.default({ es: [], en: [] }),
+  /** Frase corta manuscrita que se muestra en el encabezado de la ficha */
+  tagline: localizedText.optional(),
+  /** "Qué hacer aquí": icono (ver content/icons.ts) + texto corto */
+  activities: z.array(z.object({ icon: z.string(), title: localizedText })).default([]),
+  /** Accesibilidad (p. ej. rampas). Solo se permite si el lugar está verificado. */
+  accessibility: localizedText.optional(),
 });
 export type Place = z.infer<typeof placeSchema>;
 

@@ -1,15 +1,16 @@
 import { notFound } from "next/navigation";
 import { LOCALES } from "@/content/schemas";
-import { DetailLayout, osmLinkFor } from "@/components/DetailLayout";
+import { DetailLayout } from "@/components/DetailLayout";
+import { RoutesNearby } from "@/components/RoutesNearby";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { getAllCards, placeToCard } from "@/lib/cards";
-import { getLocale } from "@/lib/locale";
-import { getContent } from "@/lib/repositories";
-import { buildMetadata } from "@/lib/site";
-import { RoutesNearby } from "@/components/RoutesNearby";
 import { NEARBY_RADIUS_M } from "@/lib/config";
 import { routesNearPoint } from "@/lib/geo";
+import { getLocale } from "@/lib/locale";
+import { pickRelatedArticle } from "@/lib/related";
+import { getContent } from "@/lib/repositories";
+import { buildMetadata } from "@/lib/site";
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
@@ -38,32 +39,48 @@ export default async function PlacePage({ params }: P) {
   const place = await repo.places.getBySlug(slug);
   if (!place) notFound();
   const d = getDictionary(locale);
-  const tagNames = await repo.tags.list();
+  const L = d.labels;
   const cat = (await repo.categories.getById(place.categoryId))!;
   const card = placeToCard(place, cat, locale, d);
-  const nearRoutes = card.coords ? routesNearPoint(await repo.routes.list(), [card.coords.lat, card.coords.lng], NEARBY_RADIUS_M) : [];
-  const { places } = await getAllCards(locale);
+  const [{ places }, tagList, articles, routes] = await Promise.all([getAllCards(locale), repo.tags.list(), repo.articles.list(), repo.routes.list()]);
   const related = places.filter((c) => c.id !== place.id).sort((a, b) => Number(b.categoryId === card.categoryId) - Number(a.categoryId === card.categoryId)).slice(0, 3);
-  const L = d.labels;
+  const nearRoutes = card.coords ? routesNearPoint(routes, [card.coords.lat, card.coords.lng], NEARBY_RADIUS_M) : [];
+  const art = pickRelatedArticle(place, articles);
   const access = { free: L.free, paid: L.paid, reservation: L.reservation, unknown: L.unknownAccess }[place.access];
+  const area = place.location.area[locale];
 
   return (
     <DetailLayout
       locale={locale} dict={d} card={card}
       crumbs={[{ label: L.home, href: href(locale, null) }, { label: place.isSecret ? d.nav.secret : d.nav.free, href: href(locale, place.isSecret ? "lugares-secretos" : "gratis") }, { label: card.title }]}
+      hero={{
+        photo: card.photo, tagline: place.tagline?.[locale],
+        chips: [
+          { label: access, color: place.access === "free" ? "pink" : "yellow", icon: "Tag" },
+          { label: area, color: "teal", icon: "MapPin" },
+          { label: cat.name[locale], color: "purple", icon: cat.icon },
+          ...(place.isSecret ? [{ label: d.nav.secret, color: "pink" as const, icon: "Heart" }] : []),
+          ...(card.pending ? [{ label: L.pending, color: "yellow" as const, icon: "Info" }] : []),
+        ],
+      }}
       description={place.description[locale]}
+      tags={tagList.filter((t) => place.tagIds.includes(t.id)).map((t) => t.name[locale])}
       rows={[
-        { label: L.location, value: [place.location.area[locale], place.location.address].filter(Boolean).join(" · ") },
-        { label: L.price, value: place.priceNote ? `${access} — ${place.priceNote[locale]}` : access },
-        ...(place.hours ? [{ label: L.hours, value: place.hours[locale] }] : []),
+        { icon: "Tag", label: d.detail.type, value: cat.name[locale] },
+        { icon: "CircleDollarSign", label: L.price, value: place.priceNote ? `${access} — ${place.priceNote[locale]}` : access },
+        ...(place.hours ? [{ icon: "Clock", label: L.hours, value: place.hours[locale] }] : []),
+        ...(place.accessibility ? [{ icon: "Accessibility", label: d.detail.accessibility, value: place.accessibility[locale] }] : []),
+        { icon: "MapPin", label: L.location, value: area },
       ]}
-      sections={[
-        ...(place.howToGet ? [{ title: L.howToGet, text: place.howToGet[locale] }] : []),
-        ...(place.tips[locale].length ? [{ title: L.tips, items: place.tips[locale] }] : []),
-      ]}
-      tags={tagNames.filter((t) => place.tagIds.includes(t.id)).map((t) => t.name[locale])}
-      extra={<RoutesNearby routes={nearRoutes} locale={locale} dict={d} radius={NEARBY_RADIUS_M} />}
-      related={related} verification={place.verification} osmLink={osmLinkFor(card.coords)}
+      verification={place.verification}
+      gallery={place.photos.map((p) => ({ src: p.src, alt: p.alt[locale], credit: p.credit }))}
+      activities={place.activities.map((a) => ({ icon: a.icon, title: a.title[locale] }))}
+      location={{ area, address: place.location.address, howToGet: place.howToGet?.[locale] }}
+      reach={<RoutesNearby routes={nearRoutes} locale={locale} dict={d} radius={NEARBY_RADIUS_M} />}
+      tips={place.tips[locale]}
+      related={related}
+      readAlso={art ? { title: art.title[locale], excerpt: art.excerpt[locale], href: href(locale, "blog", art.slug) } : null}
+      showSuggest
     />
   );
 }

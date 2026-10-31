@@ -55,7 +55,34 @@
         "Going early usually helps you find a quieter spot.",
         "Bring water and sun protection; confirm which services are available before you go."
       ]
-    }
+    },
+    "tagline": {
+      "es": "¡El lugar perfecto para desconectarte!",
+      "en": "The perfect place to unwind!"
+    },
+    "activities": [
+      {
+        "icon": "Camera",
+        "title": {
+          "es": "Tomar fotos en el letrero de Cancún",
+          "en": "Take photos at the Cancún sign"
+        }
+      },
+      {
+        "icon": "Waves",
+        "title": {
+          "es": "Disfrutar de la playa y el mar",
+          "en": "Enjoy the beach and the sea"
+        }
+      },
+      {
+        "icon": "Footprints",
+        "title": {
+          "es": "Caminar por la zona y explorar",
+          "en": "Walk around and explore the area"
+        }
+      }
+    ]
   },
   {
     "id": "place-parque-de-las-palapas",
